@@ -1,0 +1,52 @@
+
+<mat-toolbar class="navigation-bar">
+    <mat-toolbar-row>
+        <span class="mat-display-2">E-junk shop</span>
+    </mat-toolbar-row>
+    <mat-toolbar-row fxShow="true" fxHide.lt-sm="true">
+        <button color="accent" mat-button [matMenuTriggerFor]="menu">Categories</button>
+        <span class="spacer"></span>
+        <button class="cartShopping" color="accent" mat-icon-button>
+                <mat-icon>shopping_cart</mat-icon>
+                <span>Shopping cart</span>
+        </button>
+        <button class="account" color="accent" mat-icon-button>
+            <mat-icon>account_circle</mat-icon>
+            <span>Login</span>
+        </button>
+    </mat-toolbar-row>
+    <mat-toolbar-row fxShow="false" fxShow.lt-sm="true" fxHide.lt-md="true">
+        <button color="accent" mat-button [matMenuTriggerFor]="menu">Categories</button>
+    </mat-toolbar-row>
+    <mat-toolbar-row fxShow="false" fxShow.lt-sm="true" fxHide.lt-md="true">
+        <span class="spacer"></span>
+        <button class="smallSizeButtons" color="accent" mat-icon-button>
+                <mat-icon>shopping_cart</mat-icon>
+                <span>Shopping cart</span>
+        </button>
+        <span class="spacer"></span>
+    </mat-toolbar-row>
+    <mat-toolbar-row fxShow="false" fxShow.lt-sm="true" fxHide.lt-md="true">
+        <span class="spacer"></span>
+        <button class="smallSizeButtons" color="accent" mat-icon-button>
+            <mat-icon>account_circle</mat-icon>
+            <span>Login</span>
+        </button>
+        <span class="spacer"></span>
+    </mat-toolbar-row>
+    <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+        <mat-icon>book</mat-icon>
+        <span>E-books</span>
+    </button>
+    <button mat-menu-item disabled>
+        <mat-icon>album</mat-icon>
+        <span>Music</span>
+    </button>
+    <button mat-menu-item>
+        <mat-icon>image</mat-icon>
+        <span>Images for sale</span>
+    </button>
+    </mat-menu>
+</mat-toolbar>
+
