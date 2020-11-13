@@ -1,0 +1,55 @@
+.issue-place-select {
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.footer-delivery {
+    display: flex;
+    flex-flow: row-reverse;
+    margin-right: 5rem;
+    margin-top: 4rem !important;
+    margin-bottom: 1.2rem !important;
+}
+
+.footer-delivery-center {
+    justify-content: center;
+    margin-right: 0;
+}
+
+.main-button {
+    width: 18rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.title {
+    display: block;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #F51771;
+    padding-top: 3rem;
+    padding-left: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+.adress-content {
+    display: flex;
+    justify-content: center;
+}
+
+.address-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+  
+.example-full-width {
+    width: 100%;
+}
+  
+td {
+    padding-right: 8px;
+}

@@ -6,9 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
-import { MatInputModule } from '@angular/material/input'
+import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatFormFieldModule } from  '@angular/material/form-field';
+import { MatSelectModule } from  '@angular/material/select';
+import { MatCheckboxModule } from  '@angular/material/checkbox';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -21,7 +24,10 @@ const MaterialComponents = [
   MatInputModule,
   MatButtonModule,
   MatSnackBarModule,
-  MatTabsModule
+  MatTabsModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatCheckboxModule
 ]
 
 @NgModule({

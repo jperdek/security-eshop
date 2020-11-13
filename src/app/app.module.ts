@@ -20,6 +20,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ProductContentComponent } from './product-content/product-content.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { PayingMethodsComponent } from './paying-methods/paying-methods.component';
+import { DeliveryInfoComponent } from './delivery-info/delivery-info.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PayingMethodsComponent } from './paying-methods/paying-methods.componen
     FooterComponent,
     ProductContentComponent,
     ShoppingCartComponent,
-    PayingMethodsComponent
+    PayingMethodsComponent,
+    DeliveryInfoComponent
   ],
   imports: [
     BrowserModule,
