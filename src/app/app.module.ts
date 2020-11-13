@@ -18,6 +18,7 @@ import { CardComponent } from './card/card.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductContentComponent } from './product-content/product-content.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { PayingMethodsComponent } from './paying-methods/paying-methods.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     CardComponent,
     FooterComponent,
     ProductContentComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    PayingMethodsComponent
   ],
   imports: [
     BrowserModule,

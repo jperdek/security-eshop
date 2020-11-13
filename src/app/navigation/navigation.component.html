@@ -7,7 +7,7 @@
     <mat-toolbar-row fxShow="true" fxHide.lt-sm="true">
         <button color="accent" mat-button [matMenuTriggerFor]="menu">Categories</button>
         <span class="spacer"></span>
-        <button class="cartShopping" color="accent" mat-icon-button>
+        <button class="cartShopping" color="accent" mat-icon-button [routerLink]="'/cart'">
                 <mat-icon>shopping_cart</mat-icon>
                 <span>Shopping cart</span>
         </button>
@@ -25,7 +25,7 @@
     </mat-toolbar-row>
     <mat-toolbar-row fxShow="false" fxShow.lt-sm="true" fxHide.lt-md="true">
         <span class="spacer"></span>
-        <button class="smallSizeButtons" color="accent" mat-icon-button >
+        <button class="smallSizeButtons" color="accent" mat-icon-button [routerLink]="'/cart'">
                 <mat-icon>shopping_cart</mat-icon>
                 <span>Shopping cart</span>
         </button>

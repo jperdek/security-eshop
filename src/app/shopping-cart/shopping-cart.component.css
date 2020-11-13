@@ -24,6 +24,33 @@
     display: flex;
     flex-flow: row-reverse;
     margin-right: 5rem;
-    padding-top: 1rem;
-    padding-bottom: 2rem;
+    margin-top: 4rem !important;
+    margin-bottom: 1.2rem !important;
+}
+
+.footer-cart-center {
+    justify-content: center;
+    margin-right: 0;
+}
+
+.title {
+    display: block;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #F51771;
+    padding-top: 3rem;
+    padding-left: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+.small-mat-list {
+    margin-bottom: 5rem;
+    padding-top: 4rem;
+    margin-top: 2rem;
+}
+
+.cart-product-heading-small {
+    display: block;
+    font-weight: bold !important;
+    padding-top: 3rem !important;
 }
