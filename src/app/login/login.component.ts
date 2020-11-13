@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
@@ -10,7 +11,7 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup
 
-  constructor() { }
+  constructor(private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
 
@@ -22,8 +23,12 @@ export class LoginComponent implements OnInit {
 
   }
   submit() {
-    if (this.form.valid) {
+    if (this.form.status != "INVALID") {
       this.submitEM.emit(this.form.value);
+    }
+    else {
+      let snackBarRef = this._snackBar.open('Please fill up all required fields');
+
     }
   }
   @Input() error: string | null;

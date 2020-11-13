@@ -7,6 +7,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input'
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 const MaterialComponents = [
   MatButtonModule,
   MatIconModule,
@@ -16,7 +18,7 @@ const MaterialComponents = [
   MatListModule,
   MatCardModule,
   MatInputModule,
-  MatButtonModule
+  MatButtonModule,MatSnackBarModule
 ]
 
 @NgModule({
