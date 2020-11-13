@@ -15,6 +15,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule} from '@angular/flex-layout';
 import { CardComponent } from './card/card.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProductContentComponent } from './product-content/product-content.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FooterComponent } from './footer/footer.component';
     NavigationComponent,
     RegisterComponent,
     CardComponent,
-    FooterComponent
+    FooterComponent,
+    ProductContentComponent
   ],
   imports: [
     BrowserModule,
