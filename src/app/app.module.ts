@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,7 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { MaterialModule } from './material/material.module';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { FlexLayoutModule} from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { CardComponent } from './card/card.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductContentComponent } from './product-content/product-content.component';
@@ -37,7 +38,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     MaterialModule,
     MatMenuModule,
     MatToolbarModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    BrowserModule, ReactiveFormsModule, BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

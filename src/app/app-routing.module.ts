@@ -8,14 +8,14 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 const routes: Routes = [
   {
     path: '',
-   component: ProductContentComponent
-},
+    component: ProductContentComponent
+  },
   {
-    path: 'register',
+    path: 'signup',
     component: RegisterComponent
-},
-{
-     path: 'login',
+  },
+  {
+    path: 'signin',
     component: LoginComponent
 },
 {

@@ -1,14 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -17,15 +9,29 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 
 export class LoginComponent implements OnInit {
-  constructor() { }
-  
+  form: FormGroup
+
+  constructor(private _snackBar: MatSnackBar) { }
+
   ngOnInit(): void {
+
+    this.form = new FormGroup({
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+    });
+
+
+  }
+  submit() {
+    if (this.form.status != "INVALID") {
+      this.submitEM.emit(this.form.value);
+    }
+    else {
+      let snackBarRef = this._snackBar.open('Please fill up all required fields', '', {
+        duration: 1000
+      });
+    }
   }
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-
-  matcher = new MyErrorStateMatcher();
+  @Output() submitEM = new EventEmitter();
 }
