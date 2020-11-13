@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -26,5 +26,7 @@ export class LoginComponent implements OnInit {
       this.submitEM.emit(this.form.value);
     }
   }
+  @Input() error: string | null;
+
   @Output() submitEM = new EventEmitter();
 }
