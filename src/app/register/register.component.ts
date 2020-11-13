@@ -31,7 +31,9 @@ export class RegisterComponent implements OnInit {
       this.submitEM.emit(this.form.value);
     }
     else {
-      let snackBarRef = this._snackBar.open('Please fill up all required fields');
+      let snackBarRef = this._snackBar.open('Please fill up all required fields', '', {
+        duration: 1000
+      });
 
     }
   }

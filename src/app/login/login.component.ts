@@ -1,6 +1,6 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
     this.form = new FormGroup({
-      username: new FormControl(''),
-      password: new FormControl(''),
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
     });
 
 
@@ -27,11 +27,11 @@ export class LoginComponent implements OnInit {
       this.submitEM.emit(this.form.value);
     }
     else {
-      let snackBarRef = this._snackBar.open('Please fill up all required fields');
-
+      let snackBarRef = this._snackBar.open('Please fill up all required fields', '', {
+        duration: 1000
+      });
     }
   }
-  @Input() error: string | null;
 
   @Output() submitEM = new EventEmitter();
 }
