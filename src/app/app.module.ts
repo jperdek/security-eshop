@@ -1,4 +1,5 @@
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -41,7 +42,10 @@ import { PayingMethodsComponent } from './paying-methods/paying-methods.componen
     MatMenuModule,
     MatToolbarModule,
     FlexLayoutModule,
-    BrowserModule, ReactiveFormsModule, BrowserAnimationsModule
+    BrowserModule, 
+    ReactiveFormsModule, 
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

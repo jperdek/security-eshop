@@ -1,7 +1,68 @@
-<mat-card>
-<mat-tab-group mat-align-tabs="center">
-  <mat-tab label="Card">Content 1 WAESRDTFHGJJASDFGH</mat-tab>
-  <mat-tab label="Bank Transfer">Content 2asdsvfgvaSDFG</mat-tab>
-  <mat-tab label="Cash on delivery">Content 3</mat-tab>
-</mat-tab-group>
+<mat-card >
+    <mat-card-header class="header-card">
+        <mat-card-title class="mat-headline title">Paying methods</mat-card-title>
+    </mat-card-header>
+    <mat-tab-group mat-align-tabs="center">
+        <mat-tab label="Card" fxLayout="row" fxFill>
+            <mat-grid-list cols="2" rowHeight="2:1">
+                <mat-grid-tile>
+                    <form class="example-form">
+                        <table class="example-full-width" cellspacing="0"><tr>
+                            <td><mat-form-field class="example-full-width">
+                            <mat-label>Card number</mat-label>
+                            <input matInput>
+                            </mat-form-field></td>
+                        </tr></table>
+
+                        <table class="example-full-width" cellspacing="0"><tr>
+                            <td><mat-form-field class="example-full-width">
+                            <mat-label>Name of card</mat-label>
+                            <input matInput placeholder="Ex. San Francisco">
+                            </mat-form-field></td>
+                            <td><mat-form-field class="example-full-width">
+                            <mat-label>Date</mat-label>
+                            <input matInput placeholder="Ex. California">
+                            </mat-form-field></td>
+                            <td><mat-form-field class="example-full-width">
+                            <mat-label>Security Code</mat-label>
+                            <input matInput #securityCode maxlength="3" placeholder="Ex. 941" value="000">
+                            <mat-hint align="end">{{securityCode.value.length}} / 3</mat-hint>
+                            </mat-form-field></td>
+                        </tr></table>
+                    </form>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <img class="card-image" src="/assets/images/ccdescriptionw.svg" />
+                </mat-grid-tile>
+            </mat-grid-list>
+            <div fxShow="true" class="footer-cart footer-cart-center" [routerLink]="'/paying-methods'">
+                <button color="primary" mat-raised-button class="icon-button" class="main-button">
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                    <span>Finish order</span>
+                </button>
+            </div>
+        </mat-tab>
+        <mat-tab label="Bank Transfer" fxLayout="column" fxFill>
+            <div class="mat-display-1 text-paying-methods">
+            Information about bank transfer information will be sent on your email!
+            </div>
+            <div fxShow="true" class="footer-cart footer-cart-center" [routerLink]="'/paying-methods'">
+                <button color="primary" mat-raised-button class="icon-button" class="main-button">
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                    <span>Finish order</span>
+                </button>
+            </div>
+        </mat-tab>
+        <mat-tab label="Cash on delivery">
+            <div class="mat-display-1 text-paying-methods">
+            You will pay 2&euro; for delivery!
+            </div>
+            <div fxShow="true" class="footer-cart footer-cart-center" [routerLink]="'/paying-methods'">
+                <button color="primary" mat-raised-button class="icon-button" class="main-button">
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                    <span>Finish order</span>
+                </button>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
 </mat-card>
