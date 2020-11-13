@@ -54,3 +54,9 @@
     font-weight: bold !important;
     padding-top: 3rem !important;
 }
+
+.price-label {
+    width: 4rem;
+    text-align: right;
+    padding-left: 1rem; 
+}

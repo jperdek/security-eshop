@@ -22,6 +22,7 @@
                     <mat-icon mat-list-icon>delete</mat-icon>
                     <span>Delete</span>
                 </button>
+                <label class="price-label">10,50 &euro;</label>
             </mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item>
@@ -42,6 +43,14 @@
                     <mat-icon mat-list-icon>delete</mat-icon>
                     <span>Delete</span>
                 </button>
+                <label class="price-label">2,50 &euro;</label>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <mat-icon mat-list-icon>checkout</mat-icon>
+                <div mat-line >Checkout:</div>
+                
+                <label class="price-label">13,50 &euro;</label>
             </mat-list-item>
         </mat-list>
         <mat-list fxShow="false" fxShow.lt-md="true" fxHide.lt-lg="true">
@@ -67,9 +76,10 @@
                         <span fxHide.lt-vs="true">Delete</span>
                     </button>
                 </div>
-            </mat-list-item>
+                <label class="price-label">10,50 &euro;</label>
+            </mat-list-item >
             <mat-divider></mat-divider>
-            <mat-list-item>
+            <mat-list-item class="small-mat-list">
                 <mat-icon mat-list-icon>east</mat-icon>
                 <div mat-line class="cart-product-heading-small">Product 2</div>
                 <div mat-line>
@@ -91,6 +101,14 @@
                         <span fxHide.lt-vs="true">Delete</span>
                     </button>
                 </div>
+                <label class="price-label">2,50 &euro;</label>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <mat-icon mat-list-icon>east</mat-icon>
+                <div mat-line>Checkout:</div>
+                
+                <label class="price-label">13,50 &euro;</label>
             </mat-list-item>
         </mat-list>
     </mat-card-content>
