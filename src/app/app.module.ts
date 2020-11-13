@@ -16,6 +16,7 @@ import { FlexLayoutModule} from '@angular/flex-layout';
 import { CardComponent } from './card/card.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductContentComponent } from './product-content/product-content.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ProductContentComponent } from './product-content/product-content.compo
     RegisterComponent,
     CardComponent,
     FooterComponent,
-    ProductContentComponent
+    ProductContentComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,

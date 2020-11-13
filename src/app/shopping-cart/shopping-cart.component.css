@@ -1,0 +1,29 @@
+.cart-card {
+    margin: 4rem;
+    border-radius: 20px;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+.icon-cart-button {
+    width: 5rem;
+}
+
+.item-counter {
+    width: 30px;
+}
+
+.main-button {
+    width: 18rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.footer-cart {
+    display: flex;
+    flex-flow: row-reverse;
+    margin-right: 5rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
