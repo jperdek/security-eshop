@@ -2,9 +2,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
 import { Router } from '@angular/router'
 import { MessageComponent } from '../message/message.component';
 import * as bcrypt from 'bcryptjs';
@@ -40,10 +38,10 @@ export class LoginComponent implements OnInit {
           console.log(response);
           const salt = bcrypt.genSaltSync(10);
           var passBCrypt1, passBCrypt2;
-          
+
           if(response != null){
-            passBCrypt1 = bcrypt.hashSync(response['password'], salt);
-            passBCrypt2 = bcrypt.hashSync(user.password, salt);
+            passBCrypt1 = response['password']; //bcrypt.hashSync(response['password'], salt);
+            passBCrypt2 = bcrypt.hashSync(user.password, salt); 
           }
 
           if( response!= null && passBCrypt1  == passBCrypt2){

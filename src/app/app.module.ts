@@ -25,6 +25,7 @@ import { DeliveryInfoComponent } from './delivery-info/delivery-info.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { MessageComponent } from './message/message.component';
+import { UserCreatedComponent } from './user-created/user-created.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MessageComponent } from './message/message.component';
     ShoppingCartComponent,
     PayingMethodsComponent,
     DeliveryInfoComponent,
-    MessageComponent
+    MessageComponent,
+    UserCreatedComponent
   ],
   imports: [
     BrowserModule,

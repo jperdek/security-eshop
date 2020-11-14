@@ -6,25 +6,25 @@
             <p>
                 <mat-form-field class="full-width">
                     <mat-label>Full Name</mat-label>
-                    <input type="text" matInput placeholder="Full Name" formControlName="username" >
+                    <input type="text" matInput placeholder="Full Name" formControlName="username" [(ngModel)]="name">
                 </mat-form-field>
             </p>
             <p>
                 <mat-form-field class="full-width">
                     <mat-label>Email</mat-label>
-                    <input type="email" matInput placeholder="Email" formControlName="email" >
+                    <input type="email" matInput placeholder="Email" formControlName="email" [(ngModel)]="email">
                 </mat-form-field>
             </p>
             <p>
                 <mat-form-field class="full-width">
                     <mat-label>Address</mat-label>
-                    <input type="text" matInput placeholder="Address" formControlName="address" >
+                    <input type="text" matInput placeholder="Address" formControlName="address" [(ngModel)]="address">
                 </mat-form-field>
             </p>
             <p>
                 <mat-form-field class="full-width">
                     <mat-label>Password</mat-label>
-                    <input type="password" matInput placeholder="Password" formControlName="password" >
+                    <input type="password" matInput placeholder="Password" formControlName="password" [(ngModel)]="password">
                 </mat-form-field>
             </p>
             <p>
@@ -37,7 +37,7 @@
 
            
             <p class="button">
-                <button type="submit" class="blue" mat-button>SignUp</button>
+                <button type="submit" class="blue" mat-button (click)="setUser({'name':name, 'password':password, 'email': email, 'address': address})">SignUp</button>
             </p>
         </form>
     </mat-card-content>
