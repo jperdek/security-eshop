@@ -22,6 +22,10 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { PayingMethodsComponent } from './paying-methods/paying-methods.component';
 import { DeliveryInfoComponent } from './delivery-info/delivery-info.component';
 
+
+import { HttpClientModule } from '@angular/common/http';
+import { MessageComponent } from './message/message.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +38,8 @@ import { DeliveryInfoComponent } from './delivery-info/delivery-info.component';
     ProductContentComponent,
     ShoppingCartComponent,
     PayingMethodsComponent,
-    DeliveryInfoComponent
+    DeliveryInfoComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +52,8 @@ import { DeliveryInfoComponent } from './delivery-info/delivery-info.component';
     BrowserModule, 
     ReactiveFormsModule, 
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
