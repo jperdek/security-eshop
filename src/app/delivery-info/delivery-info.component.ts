@@ -58,4 +58,5 @@ export class DeliveryInfoComponent implements OnInit {
       ]
     }
   ];
+
 }

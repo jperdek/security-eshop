@@ -1,7 +1,8 @@
 .issue-place-select {
     display: flex;
     justify-content: center;
-    margin: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
 .footer-delivery {
@@ -34,9 +35,25 @@
     padding-bottom: 1rem;
 }
 
-.adress-content {
-    display: flex;
-    justify-content: center;
+.form-parent {
+    width: 50vw;
+    padding-left: 3.5rem;
+    align-content: center;
+}
+
+@media(min-width:  700px) {
+    .van-image {
+        display: flex;
+        justify-self: center;
+        justify-content: center;
+        width: 50vw;
+    }
+}
+
+@media(max-width:  700px) {
+    .van-image {
+        display: none;
+    }
 }
 
 .address-form {
@@ -52,4 +69,16 @@
   
 td {
     padding-right: 8px;
+}
+
+.card-image {
+    max-height: 390px;
+}
+
+.card-image-md {
+    max-height: 225px;
+}
+
+.card-image-sm {
+    max-height: 150px;
 }
