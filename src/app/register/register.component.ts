@@ -43,11 +43,11 @@ export class RegisterComponent implements OnInit {
     const salt = bcrypt.genSaltSync(10);
     const passBCrypt1 = bcrypt.hashSync(user.password, salt);
     var newUser = {}
-    newUser['username'] = user.name;
+    newUser['userName'] = user.name;
     newUser['password'] = passBCrypt1;
     console.log(newUser);
     //users/register/name/{username}/password/{password}
-    return this._ourHttpClient.get("http://localhost:8080/users/register/name/{"+ user.name+"}/password/{"+  passBCrypt1 +"}").subscribe(
+    return this._ourHttpClient.post("http://localhost:8080/addUser", newUser ).subscribe(
       (response)=>{
         console.log(response);
 

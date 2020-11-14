@@ -3,7 +3,7 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router'
+import { ResolveStart, Router } from '@angular/router'
 import { MessageComponent } from '../message/message.component';
 import * as bcrypt from 'bcryptjs';
 
@@ -37,19 +37,24 @@ export class LoginComponent implements OnInit {
         (response)=>{
           console.log(response);
           const salt = bcrypt.genSaltSync(10);
-          var passBCrypt1, passBCrypt2;
-
-          if(response != null){
-            passBCrypt1 = response['password']; //bcrypt.hashSync(response['password'], salt);
-            passBCrypt2 = bcrypt.hashSync(user.password, salt); 
-          }
-
-          if( response!= null && passBCrypt1  == passBCrypt2){
+  
+          if( bcrypt.compareSync(user.password,response['password'], function(err, res) {
+            if (err){
+              console.log("Bad");
+              return false;
+            }
+            if (res) {
+              console.log("Good");
+              return true;
+            }
+            console.log("nothing")
+            return false;
+          }) == true){
             this.router.navigateByUrl('/');
           } else {
             this.router.navigateByUrl('/signin');
             this.openSnackBar();
-          }
+          };
         },
         (error)=>{
           console.error(error);
