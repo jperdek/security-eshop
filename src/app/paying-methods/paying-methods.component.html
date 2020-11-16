@@ -9,23 +9,23 @@
                     <form class="example-form">
                         <table class="example-full-width" cellspacing="0"><tr>
                             <td><mat-form-field class="example-full-width">
-                            <mat-label>Card number</mat-label>
-                            <input matInput>
+                                <mat-label>Card number</mat-label>
+                                <input matInput name="cardnumber" [(ngModel)]="cardnumber">
                             </mat-form-field></td>
                         </tr></table>
 
                         <table class="example-full-width" cellspacing="0"><tr>
                             <td><mat-form-field class="example-full-width">
-                            <mat-label>Name of card</mat-label>
-                            <input matInput placeholder="Ex. San Francisco">
+                                <mat-label>Name of card</mat-label>
+                                <input matInput placeholder="Ex. Peter Velky" name="namecard" [(ngModel)]="namecard">
                             </mat-form-field></td>
                             <td><mat-form-field class="example-full-width">
-                            <mat-label>Date</mat-label>
-                            <input matInput placeholder="Ex. California">
+                                <mat-label>Date</mat-label>
+                                <input matInput placeholder="Ex. 04/21" name="carddate" [(ngModel)]="carddate">
                             </mat-form-field></td>
                             <td><mat-form-field class="example-full-width">
-                            <mat-label>Security Code</mat-label>
-                            <input matInput #securityCode maxlength="3" placeholder="Ex. 941" value="000">
+                                <mat-label>Security Code</mat-label>
+                                <input matInput #securityCode maxlength="3" placeholder="Ex. 941" value="000" name="seccode" [(ngModel)]="seccode">
                             <mat-hint align="end">{{securityCode.value.length}} / 3</mat-hint>
                             </mat-form-field></td>
                         </tr></table>
@@ -36,7 +36,8 @@
                 </mat-grid-tile>
             </mat-grid-list>
             <div fxShow="true" class="footer-cart footer-cart-center" [routerLink]="'/paying-methods'">
-                <button color="primary" mat-raised-button class="icon-button" class="main-button">
+                <button color="primary" mat-raised-button class="icon-button" class="main-button" (click)="setCardPayment({'cardnumber':cardnumber,
+        'namecard': namecard, 'carddate': carddate, 'seccode': seccode})">
                     <mat-icon>keyboard_arrow_right</mat-icon>
                     <span>Finish order</span>
                 </button>
@@ -47,7 +48,7 @@
             Information about bank transfer information will be sent on your email!
             </div>
             <div fxShow="true" class="footer-cart footer-cart-center" [routerLink]="'/paying-methods'">
-                <button color="primary" mat-raised-button class="icon-button" class="main-button">
+                <button color="primary" mat-raised-button class="icon-button" class="main-button" (click)="setBankTransfer()">
                     <mat-icon>keyboard_arrow_right</mat-icon>
                     <span>Finish order</span>
                 </button>
@@ -58,7 +59,7 @@
             You will pay 2&euro; for delivery!
             </div>
             <div fxShow="true" class="footer-cart footer-cart-center" [routerLink]="'/paying-methods'">
-                <button color="primary" mat-raised-button class="icon-button" class="main-button">
+                <button color="primary" mat-raised-button class="icon-button" class="main-button" (click)="setCashDelivery()">
                     <mat-icon>keyboard_arrow_right</mat-icon>
                     <span>Finish order</span>
                 </button>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {ThemePalette} from '@angular/material/core';
+import { Router } from '@angular/router'
+import { HttpClient } from '@angular/common/http';
 
 interface DeliveryCity {
   value: string;
@@ -21,12 +23,21 @@ interface DeliveryCompanies {
 
 export class DeliveryInfoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _ourHttpClient:HttpClient, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  olor: ThemePalette = 'accent';
+  name: string;
+  surname: string;
+  address: string;
+  city: string;
+  post: string;
+  street: string;
+  postalcode: string;
+  deliveryplace: string;
+
+  color: ThemePalette = 'accent';
   checked = true;
 
   deliveryControl = new FormControl();
@@ -59,4 +70,7 @@ export class DeliveryInfoComponent implements OnInit {
     }
   ];
 
+  public setDelivery(deliveryInfo: any): void {
+    console.log(deliveryInfo);
+  }
 }

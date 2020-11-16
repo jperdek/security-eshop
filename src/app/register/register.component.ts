@@ -1,9 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router'
-import { MessageComponent } from '../message/message.component';
 import { HttpClient } from '@angular/common/http';
 import * as bcrypt from 'bcryptjs';
 import { UserCreatedComponent } from '../user-created/user-created.component';
