@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
             }
             if (res) {
               console.log("Good");
+              localStorage.setItem("loggedIn","user.name");
               return true;
             }
             console.log("nothing")

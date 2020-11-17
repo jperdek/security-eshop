@@ -22,6 +22,27 @@ export class CardComponent implements OnInit {
   public fillProducts() : void {
   }
 
+  public getFirst6ProductsLocally(): void{
+    this.pushProduct("Originálna hádanka",
+    'Pôvodná hádanka. Zistíte, kto kde býva, čo fajčí, pije a o aké zviera sa stará? A kto z nich chová rybičky?',
+    1.51, "http://localhost:4200/assets/einstein/004.jpg", 1000000);
+    this.pushProduct("Kamarátky",
+    'Pohromade je päť kamarátok. Každá má rada niektorého herca, počúva iný štýl hudby, má iné koníčky a aj sa inak stravuje. Ktorej chutia ovsené vločky?',
+    1.45, "http://localhost:4200/assets/einstein/005.jpg", 1000000);
+    this.pushProduct("Susedia",
+    'Päť susedov. Kto z nich najradšej cestuje trolejbusom? Každý má meno, prezývku, operačný systém, hobby a rád chodí iným dopravným prostriedkom.',
+    2.50, "http://localhost:4200/assets/einstein/006.jpg", 1000000);
+    this.pushProduct("Zastávka",
+    'Na zastávke stojí 5 rôznych ľudí. Kto z nich má hokejový dres? Každý má iný názor na hudbu, dovolenku, niečo iné si vypije a taktiež má niečo iné oblečené.',
+    1.70, "http://localhost:4200/assets/einstein/007.jpg", 1000000);
+    this.pushProduct("Autá",
+    'Vedľa seba je zaparkovaných 5 áut. Každé má iného majiteľa, farbu, poznávaciu značku a pneumatiky. Kto jazdieva na zelenom aute?',
+    0.50, "http://localhost:4200/assets/einstein/008.jpg", 1000000);
+    this.pushProduct("Notebooky",
+    'Na stole je 5 notebookov s rôznymi značkami, veľkosťami disku, farbami, kancelárskymi balíkmi a operačnými systémami. Ktorý z nich je značky Samsung?',
+    0.94, "http://localhost:4200/assets/einstein/009.jpg", 1000000);
+  }
+
   public insertProducts(): void{
     this.insert("Originálna hádanka",
     'Pôvodná hádanka. Zistíte, kto kde býva, čo fajčí, pije a o aké zviera sa stará? A kto z nich chová rybičky?',
@@ -91,7 +112,7 @@ export class CardComponent implements OnInit {
     if(this.titles.length < 6){
       this.titles.push(dictionary);
     }
-    
+
     this._ourHttpClient.post("http://localhost:8080/create/product", dictionary, { responseType: 'text' as 'json' }).subscribe(
       (response)=>{
         console.log(response);
@@ -104,6 +125,7 @@ export class CardComponent implements OnInit {
 
   }
 
+  public pushProduct
   public addToChart(itemTitle: string): void{
 
   }
