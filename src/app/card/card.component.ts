@@ -12,9 +12,14 @@ export class CardComponent implements OnInit {
   constructor(private _ourHttpClient:HttpClient) { }
 
   ngOnInit(): void {
-    if(false){
+    if(true){
       this.insertProducts();
     }
+  }
+
+  titles = []
+
+  public fillProducts() : void {
   }
 
   public insertProducts(): void{
@@ -80,15 +85,23 @@ export class CardComponent implements OnInit {
     dictionary['name'] = name;
     dictionary['description'] = description;
     dictionary['price'] = price;
-    dictionary['url'] = url;
+    dictionary['URL'] = url;
     dictionary['quantity'] = quantity;
-    this._ourHttpClient.post("http://localhost:8080/", dictionary).subscribe(
+
+    if(this.titles.length < 6){
+      this.titles.push(dictionary);
+    }
+    
+    this._ourHttpClient.post("http://localhost:8080/create/product", dictionary, { responseType: 'text' as 'json' }).subscribe(
       (response)=>{
         console.log(response);
+        return dictionary;
       },
       (error)=>{
         console.error(error);
+        return dictionary;
       });
+
   }
 
   public addToChart(itemTitle: string): void{
