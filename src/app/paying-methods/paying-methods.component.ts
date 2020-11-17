@@ -22,13 +22,16 @@ export class PayingMethodsComponent implements OnInit {
 
   public setBankTransfer(): void {
     console.log("Bank transfer!");
+    this.router.navigateByUrl('/completed');
   }
 
   public setCashDelivery(): void {
     console.log("Cash delivery!");
+    this.router.navigateByUrl('/completed');
   }
 
   public setCardPayment(card:any): void {
     console.log(card);
+    this.router.navigateByUrl('/completed');
   }
 }

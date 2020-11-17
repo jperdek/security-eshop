@@ -1,12 +1,12 @@
 
-<mat-card class="product-card" >
+<mat-card class="product-card product-1" >
   <mat-card-header class="header-card">
     <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    <mat-card-title class="product_title">Susedia</mat-card-title>
+    <mat-card-subtitle class="product_price">1.5 &euro;</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image class="photo-content" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-  <mat-card-content>
+  <mat-card-content >
     <p>
       The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
       A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
@@ -14,11 +14,11 @@
     </p>
   </mat-card-content>
   <mat-card-actions class="footer-card">
-        <button mat-icon-button class="icon-button">
+        <button mat-icon-button class="icon-button" (click)="addToChart('Susedia')">
             <mat-icon>add_shopping_cart</mat-icon>
             <span>Add to cart</span>
         </button>
-        <button mat-icon-button class="icon-button">
+        <button mat-icon-button class="icon-button" [routerLink]="'/create'">
             <mat-icon>zoom_in</mat-icon>
             <span>View detail</span>
         </button>
