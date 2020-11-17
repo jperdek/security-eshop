@@ -12,8 +12,10 @@ export class CardComponent implements OnInit {
   constructor(private _ourHttpClient:HttpClient) { }
 
   ngOnInit(): void {
-    if(true){
+    if(false){
       this.insertProducts();
+    }  else {
+      this.getFirst6ProductsLocally()
     }
   }
 
@@ -125,9 +127,40 @@ export class CardComponent implements OnInit {
 
   }
 
-  public pushProduct
-  public addToChart(itemTitle: string): void{
+  public pushProduct(name:string, description:string, price:number, url:string, quantity:number):void {
+      var dictionary = {}
+      dictionary['name'] = name;
+      dictionary['description'] = description;
+      dictionary['price'] = price;
+      dictionary['URL'] = url;
+      dictionary['quantity'] = quantity;
+      this.titles.push(dictionary);
+  }
 
+  public addToChart(itemTitle: string, price: number): void{
+      var shoppingCartProducts;
+      var newItem = {}
+      newItem['title'] = itemTitle;
+      newItem['price'] = price;
+      newItem['quantity'] = 1;
+
+      if((shoppingCartProducts = localStorage.getItem("shoppingCartProducts")) === null){
+        shoppingCartProducts = {};
+      } else {
+        try {
+          shoppingCartProducts = JSON.parse(shoppingCartProducts );
+        } catch(err) {
+          shoppingCartProducts = {};
+        }  
+      }
+
+      if(shoppingCartProducts[itemTitle] === null || typeof shoppingCartProducts[itemTitle] === "undefined"){
+        shoppingCartProducts[itemTitle] = newItem;
+      } else {
+        shoppingCartProducts[itemTitle]['quantity'] = shoppingCartProducts[itemTitle]['quantity'] + 1;
+      }
+
+      localStorage.setItem("shoppingCartProducts", JSON.stringify(shoppingCartProducts));
   }
 
   public getFirstSixProducts(): any {

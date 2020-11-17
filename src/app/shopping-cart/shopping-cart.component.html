@@ -4,49 +4,30 @@
     </mat-card-header>
     <mat-card-content >
         <mat-list fxShow="true" fxHide.lt-md="true">
-            <mat-list-item class="comp-1">
-                <mat-icon mat-list-icon>east</mat-icon>
-                <div mat-line>Product 1</div>
-                <button mat-icon-button class="icon-cart-button" (click)='increase("counter-1");'>
-                    <mat-icon mat-list-icon>add_circle</mat-icon>
-                    <span>Add</span>
-                </button>
-                <button mat-icon-button class="icon-cart-button" (click)='decrease("counter-1");'>
-                    <mat-icon>remove_circle</mat-icon>
-                    <span>Remove</span>
-                </button>
-                <mat-form-field>
-                    <input class="item-counter counter-1" matInput maxlength="3" placeholder="Ex. 2" value="1">
-                </mat-form-field>
-                 <button mat-icon-button class="icon-cart-button" (click)='deleteComponent("comp-1");'>
-                    <mat-icon mat-list-icon>delete</mat-icon>
-                    <span>Delete</span>
-                </button>
-                <input type="hidden" class="price-one-1" value="10.50"/>
-                <label class="price-prod-1 price-label">10,50 &euro;</label>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item class="comp-2">
-                <mat-icon mat-list-icon>east</mat-icon>
-                <div mat-line>Product 2</div>
-                <button mat-icon-button class="icon-cart-button" (click)='increase("counter-2");'>
-                    <mat-icon mat-list-icon>add_circle</mat-icon>
-                    <span>Add</span>
-                </button>
-                <button mat-icon-button class="icon-cart-button" (click)='decrease("counter-2");'>
-                    <mat-icon>remove_circle</mat-icon>
-                    <span>Remove</span>
-                </button>
-                <mat-form-field>
-                    <input class="item-counter counter-2" matInput maxlength="3" placeholder="Ex. 2" value="1">
-                </mat-form-field>
-                 <button mat-icon-button class="icon-cart-button" (click)='deleteComponent("comp-2");'>
-                    <mat-icon mat-list-icon>delete</mat-icon>
-                    <span>Delete</span>
-                </button>
-                <input type="hidden" class="price-one-2" value="2.50"/>
-                <label class="price-prod-2 price-label">2,50 &euro;</label>
-            </mat-list-item>
+            <div *ngFor="let product of products; let i = index">
+                <mat-list-item class="comp-{{i}}">
+                    <mat-icon mat-list-icon>east</mat-icon>
+                    <div mat-line>{{product.title}}</div>
+                    <button mat-icon-button class="icon-cart-button" type="button" (click)='increase("counter-"+i.toString(), product.title);'>
+                        <mat-icon mat-list-icon>add_circle</mat-icon>
+                        <span>Add</span>
+                    </button>
+                    <button mat-icon-button class="icon-cart-button" type="button" (click)='decrease("counter-"+i.toString(), product.title);'>
+                        <mat-icon>remove_circle</mat-icon>
+                        <span>Remove</span>
+                    </button>
+                    <mat-form-field>
+                        <input class="item-counter counter-{{i}}" matInput maxlength="3" placeholder="Ex. 2" value="{{product.quantity}}" disabled>
+                    </mat-form-field>
+                    <button mat-icon-button class="icon-cart-button" type="button" (click)='deleteComponent("comp-"+i.toString(), product.title);'>
+                        <mat-icon mat-list-icon>delete</mat-icon>
+                        <span>Delete</span>
+                    </button>
+                    <input type="hidden" class="price-one-{{i}}" value="{{product.price}}"/>
+                    <label class="price-prod-{{i}} price-label">10,50 &euro;</label>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+            </div>
             <mat-divider></mat-divider>
             <mat-list-item>
                 <mat-icon mat-list-icon>checkout</mat-icon>
@@ -56,57 +37,34 @@
             </mat-list-item>
         </mat-list>
         <mat-list fxShow="false" fxShow.lt-md="true" fxHide.lt-lg="true">
-            <mat-list-item class="small-mat-list comp-1">
-                <mat-icon mat-list-icon>east</mat-icon>
-                <div mat-line  class="cart-product-heading-small">Product 1</div>
-                <div mat-line class="cart-product-options">
-                    <button mat-icon-button class="icon-cart-button" (click)='increase("counter-1");'>
-                        <mat-icon mat-list-icon>add_circle</mat-icon>
-                        <span fxHide.lt-vs="true">Add</span>
-                    </button>
-                    <button mat-icon-button class="icon-cart-button" (click)='decrease("counter-1");'>
-                        <mat-icon>remove_circle</mat-icon>
-                        <span fxHide.lt-vs="true">Remove</span>
-                    </button>
-                    <mat-form-field>
-                        <input class="item-counter counter-1" matInput maxlength="3" placeholder="Ex. 2" value="1">
-                    </mat-form-field>
-                </div>
-                <div mat-line>
-                    <button mat-icon-button class="icon-cart-button" (click)='deleteComponent("comp-1");'>
-                        <mat-icon mat-list-icon>delete</mat-icon>
-                        <span fxHide.lt-vs="true">Delete</span>
-                    </button>
-                </div>
-                <input type="hidden" class="price-one-1" value="10.50"/>
-                <label class="price-prod-1 price-label">10,50 &euro;</label>
-            </mat-list-item >
-            <mat-divider></mat-divider>
-            <mat-list-item class="small-mat-list comp-2">
-                <mat-icon mat-list-icon>east</mat-icon>
-                <div mat-line class="cart-product-heading-small">Product 2</div>
-                <div mat-line>
-                    <button mat-icon-button class="icon-cart-button" (click)='increase("counter-2");'>
-                        <mat-icon mat-list-icon>add_circle</mat-icon>
-                        <span fxHide.lt-vs="true">Add</span>
-                    </button>
-                    <button mat-icon-button class="icon-cart-button" (click)='decrease("counter-2");'>
-                        <mat-icon>remove_circle</mat-icon>
-                        <span fxHide.lt-vs="true">Remove</span>
-                    </button>
-                    <mat-form-field>
-                        <input class="item-counter counter-2" matInput maxlength="3" placeholder="Ex. 2" value="1">
-                    </mat-form-field>
-                </div>
-                <div mat-line>
-                    <button mat-icon-button class="icon-cart-button" (click)='deleteComponent("comp-2");'>
-                        <mat-icon mat-list-icon>delete</mat-icon>
-                        <span fxHide.lt-vs="true">Delete</span>
-                    </button>
-                </div>
-                <input type="hidden" class="price-one-2" value="2.50"/>
-                <label class="price-prod-2 price-label">2,50 &euro;</label>
-            </mat-list-item>
+            <div *ngFor="let product of products; let i = index">
+                <mat-list-item class="small-mat-list comp-{{i}}">
+                    <mat-icon mat-list-icon>east</mat-icon>
+                    <div mat-line  class="cart-product-heading-small">{{product.title}}</div>
+                    <div mat-line class="cart-product-options">
+                        <button mat-icon-button class="icon-cart-button" type="button" (click)='increase("counter-"+ i.toString(), product.title);'>
+                            <mat-icon mat-list-icon>add_circle</mat-icon>
+                            <span fxHide.lt-vs="true">Add</span>
+                        </button>
+                        <button mat-icon-button class="icon-cart-button" type="button" (click)='decrease("counter-"+ i.toString(), product.title);'>
+                            <mat-icon>remove_circle</mat-icon>
+                            <span fxHide.lt-vs="true">Remove</span>
+                        </button>
+                        <mat-form-field>
+                            <input class="item-counter counter-{{i}}" matInput maxlength="3" placeholder="Ex. 2" value="{{product.quantity}}" disabled>
+                        </mat-form-field>
+                    </div>
+                    <div mat-line>
+                        <button mat-icon-button class="icon-cart-button" type="button" (click)='deleteComponent("comp-"+i.toString(), product.title);'>
+                            <mat-icon mat-list-icon>delete</mat-icon>
+                            <span fxHide.lt-vs="true">Delete</span>
+                        </button>
+                    </div>
+                    <input type="hidden" class="price-one-{{i}}" value="{{product.price}}"/>
+                    <label class="price-prod-{{i}} price-label">10,50 &euro;</label>
+                </mat-list-item >
+                <mat-divider></mat-divider>
+            </div>
             <mat-divider></mat-divider>
             <mat-list-item>
                 <mat-icon mat-list-icon>east</mat-icon>
