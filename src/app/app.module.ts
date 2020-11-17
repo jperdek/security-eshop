@@ -29,6 +29,9 @@ import { UserCreatedComponent } from './user-created/user-created.component';
 import { OrderCompletedComponent } from './order-completed/order-completed.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
 
+import { AuthGuard } from './auth-guard';
+import { AuthService } from './auth-service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +64,7 @@ import { WorkspaceComponent } from './workspace/workspace.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

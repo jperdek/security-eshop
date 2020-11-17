@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { ResolveStart, Router } from '@angular/router'
 import { MessageComponent } from '../message/message.component';
 import * as bcrypt from 'bcryptjs';
+import { AuthService } from '../auth-service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ import * as bcrypt from 'bcryptjs';
 export class LoginComponent implements OnInit {
   form: FormGroup
 
-  constructor(private _ourHttpClient:HttpClient, private _snackBar: MatSnackBar, private router: Router) { }
+  constructor(private _ourHttpClient:HttpClient, private _snackBar: MatSnackBar, private router: Router, private _auth: AuthService) { }
   customer: any;
   name:string;
   password: string;
@@ -41,16 +42,22 @@ export class LoginComponent implements OnInit {
           if( bcrypt.compareSync(user.password,response['password'], function(err, res) {
             if (err){
               console.log("Bad");
+              this._auth.getUserDetails(user.name, user.password);
               return false;
             }
             if (res) {
               console.log("Good");
-              localStorage.setItem("loggedIn","user.name");
+              localStorage.setItem("loggedIn",user.name);
+              this._auth.setLoggedIn(true, user.name);
               return true;
             }
             console.log("nothing")
             return false;
           }) == true){
+            this._auth.setLoggedIn(true, user.name);
+            document.getElementById("signup").style.display= "none";
+            document.getElementById("signin").style.display= "none";
+            document.getElementById("logout").style.display= "block";
             this.router.navigateByUrl('/');
           } else {
             this.router.navigateByUrl('/signin');

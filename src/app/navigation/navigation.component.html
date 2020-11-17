@@ -11,13 +11,17 @@
                 <mat-icon>shopping_cart</mat-icon>
                 <span>Shopping cart</span>
         </button>
-        <button class="account" color="accent" mat-icon-button [routerLink]="'/signin'">
+        <button class="account" color="accent" mat-icon-button id="signin" [fxShow]="isLogged()" [routerLink]="'/signin'">
             <mat-icon>account_circle</mat-icon>
             <span>SignIn</span>
         </button>
-        <button class="account" color="accent" mat-icon-button [routerLink]="'/signup'">
+        <button class="account" color="accent" mat-icon-button id="signup" [fxShow]="isLogged()" [routerLink]="'/signup'">
             <mat-icon>account_circle</mat-icon>
             <span>SingUp</span>
+        </button>
+        <button class="account" color="accent" mat-icon-button id="logout" [fxShow]="!isLogged()" (click)="logout()" [routerLink]="'/'">
+            <mat-icon>account_circle</mat-icon>
+            <span>Logout</span>
         </button>
     </mat-toolbar-row>
     <mat-toolbar-row fxShow="false" fxShow.lt-sm="true" fxHide.lt-md="true">

@@ -8,6 +8,8 @@ import { ProductContentComponent } from './product-content/product-content.compo
 import { RegisterComponent } from './register/register.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
+import { AuthGuard } from './auth-guard'
+
 const routes: Routes = [
   {
     path: '',
@@ -23,19 +25,23 @@ const routes: Routes = [
   },
   {
     path: 'cart',
-  component: ShoppingCartComponent
+    component: ShoppingCartComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'delivery',
-   component: DeliveryInfoComponent
+   component: DeliveryInfoComponent,
+   canActivate: [AuthGuard]
   },
   {
     path: 'paying-methods',
-   component: PayingMethodsComponent
+   component: PayingMethodsComponent,
+   canActivate: [AuthGuard]
   },
   {
     path: 'completed',
-   component: OrderCompletedComponent
+   component: OrderCompletedComponent,
+   canActivate: [AuthGuard]
   }
 ];
 
