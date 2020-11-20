@@ -35,3 +35,39 @@
     padding-left: 1.5rem;
     padding-bottom: 1rem;
 }
+
+.slider-price {
+    width: 25vw;
+}
+
+.slider-center {
+    display: flex;
+    justify-content: center;
+}
+
+.price-to-pay {
+    font-size: 2rem;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+@media(min-width: 500px) and (max-width: 1200px) {
+    .price-to-pay {
+        padding-right: 8rem;
+    }
+}
+
+@media(min-width: 1200px){
+    .price-to-pay {
+        padding-right: 12rem;
+    }
+}
+
+@media(max-width: 500px)  {
+    .price-to-pay {
+        padding-right: 0rem;
+    }
+}

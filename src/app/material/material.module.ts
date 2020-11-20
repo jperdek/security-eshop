@@ -12,6 +12,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatFormFieldModule } from  '@angular/material/form-field';
 import { MatSelectModule } from  '@angular/material/select';
 import { MatCheckboxModule } from  '@angular/material/checkbox';
+import { MatSliderModule } from '@angular/material/slider';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -27,7 +28,8 @@ const MaterialComponents = [
   MatTabsModule,
   MatFormFieldModule,
   MatSelectModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatSliderModule
 ]
 
 @NgModule({

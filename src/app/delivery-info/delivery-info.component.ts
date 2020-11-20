@@ -72,5 +72,17 @@ export class DeliveryInfoComponent implements OnInit {
 
   public setDelivery(deliveryInfo: any): void {
     console.log(deliveryInfo);
+    var deliveryData = {}
+
+    deliveryData['name'] = deliveryInfo['name'];
+    deliveryData['surname'] = deliveryInfo['surname'];
+    deliveryData['address'] = deliveryInfo['address'];
+    deliveryData['street'] = deliveryInfo['street'];
+
+    deliveryData['city'] = deliveryInfo['city'];
+    deliveryData['post'] = deliveryInfo['post'];
+    deliveryData['postalcode'] = deliveryInfo['postalcode'];
+
+    localStorage.setItem("deliveryInfo", JSON.stringify(deliveryData));  
   }
 }

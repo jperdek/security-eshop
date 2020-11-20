@@ -35,8 +35,17 @@
                     <img class="card-image" src="/assets/images/ccdescriptionw.svg" />
                 </mat-grid-tile>
             </mat-grid-list>
+            <div class="mat-subheading-1 price-to-pay">Price to pay in &euro;</div>
+            <div class="slider-center">
+                <mat-slider class="slider-price" color="primary"
+                    thumbLabel
+                    tickInterval="1000"
+                    min="{{minPricePaymentMethod}}"
+                    max="{{maxPricePaymentMethod}}">
+                </mat-slider>
+            </div>
             <div fxShow="true" class="footer-cart footer-cart-center" [routerLink]="'/paying-methods'">
-                <button color="primary" mat-raised-button class="icon-button" class="main-button" (click)="setCardPayment({'cardnumber':cardnumber,
+                <button color="primary" mat-raised-button class="icon-button" class="main-button" (click)="cardPayment({'cardnumber':cardnumber,
         'namecard': namecard, 'carddate': carddate, 'seccode': seccode})">
                     <mat-icon>keyboard_arrow_right</mat-icon>
                     <span>Finish order</span>
@@ -47,8 +56,17 @@
             <div class="mat-display-1 text-paying-methods">
             Information about bank transfer information will be sent on your email!
             </div>
+            <div class="mat-subheading-1 price-to-pay">Price to pay in &euro;</div>
+            <div class="slider-center">
+                <mat-slider class="slider-price" color="primary"
+                    thumbLabel
+                    tickInterval="1000"
+                    min="{{minPriceBankTransfer}}"
+                    max="{{maxPriceBankTransfer}}">
+                </mat-slider>
+            </div>
             <div fxShow="true" class="footer-cart footer-cart-center" [routerLink]="'/paying-methods'">
-                <button color="primary" mat-raised-button class="icon-button" class="main-button" (click)="setBankTransfer()">
+                <button color="primary" mat-raised-button class="icon-button" class="main-button" (click)="bankTransferPayment()">
                     <mat-icon>keyboard_arrow_right</mat-icon>
                     <span>Finish order</span>
                 </button>
@@ -58,8 +76,17 @@
             <div class="mat-display-1 text-paying-methods">
             You will pay 2&euro; for delivery!
             </div>
+            <div class="mat-subheading-1 price-to-pay">Price to pay in &euro;</div>
+            <div class="slider-center">
+                <mat-slider class="slider-price" color="primary"
+                    thumbLabel
+                    tickInterval="1000"
+                    min="{{minPriceCashOnDelivery}}"
+                    max="{{maxPriceCashOnDelivery}}">
+                </mat-slider>
+            </div>
             <div fxShow="true" class="footer-cart footer-cart-center" [routerLink]="'/paying-methods'">
-                <button color="primary" mat-raised-button class="icon-button" class="main-button" (click)="setCashDelivery()">
+                <button color="primary" mat-raised-button class="icon-button" class="main-button" (click)="cashOnDeliveryPayment()">
                     <mat-icon>keyboard_arrow_right</mat-icon>
                     <span>Finish order</span>
                 </button>
