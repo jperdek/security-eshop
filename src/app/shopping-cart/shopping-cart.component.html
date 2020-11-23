@@ -17,7 +17,7 @@
                         <span>Remove</span>
                     </button>
                     <mat-form-field>
-                        <input class="item-counter counter-{{i}}" matInput maxlength="3" placeholder="Ex. 2" value="{{product.quantity}}" disabled>
+                        <input class="item-counter counter-{{i}}" matInput maxlength="3" value="{{product.quantity}}" disabled>
                     </mat-form-field>
                     <button mat-icon-button class="icon-cart-button" type="button" (click)='deleteComponent("comp-"+i.toString(), product.title);'>
                         <mat-icon mat-list-icon>delete</mat-icon>
@@ -51,7 +51,7 @@
                             <span fxHide.lt-vs="true">Remove</span>
                         </button>
                         <mat-form-field>
-                            <input class="item-counter counter-{{i}}" matInput maxlength="3" placeholder="Ex. 2" value="{{product.quantity}}" disabled>
+                            <input class="item-counter counter-{{i}}" matInput maxlength="3"  value="{{product.quantity}}" disabled>
                         </mat-form-field>
                     </div>
                     <div mat-line>

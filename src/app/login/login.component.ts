@@ -55,9 +55,7 @@ export class LoginComponent implements OnInit {
             return false;
           }) == true){
             this._auth.setLoggedIn(true, user.name);
-            document.getElementById("signup").style.display= "none";
-            document.getElementById("signin").style.display= "none";
-            document.getElementById("logout").style.display= "block";
+            
             this.router.navigateByUrl('/');
           } else {
             this.router.navigateByUrl('/signin');

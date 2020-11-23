@@ -1,25 +1,26 @@
-
-<mat-toolbar class="navigation-bar">
+<!-- <mat-toolbar class="navigation-bar">
     <mat-toolbar-row>
-        <span class="mat-display-2"><a href="/"><img class="ejunkShopLogo" src="/assets/images/ejunk-shop-logo4.svg" alt="E-junk shop" /></a></span>
+        <span class="mat-display-2"><a href="/"><img class="ejunkShopLogo" src="/assets/images/ejunk-shop-logo4.svg"
+                    alt="E-junk shop" /></a></span>
     </mat-toolbar-row>
-    
+
     <mat-toolbar-row fxShow="true" fxHide.lt-sm="true">
         <button color="accent" mat-button [matMenuTriggerFor]="menu">Categories</button>
         <span class="spacer"></span>
         <button class="cartShopping" color="accent" mat-icon-button [routerLink]="'/cart'">
-                <mat-icon>shopping_cart</mat-icon>
-                <span>Shopping cart</span>
+            <mat-icon>shopping_cart </mat-icon> (10)
+
         </button>
-        <button class="account" color="accent" mat-icon-button id="signin" [fxShow]="isLogged()" [routerLink]="'/signin'">
+        <button class="account" color="accent" mat-icon-button id="signin" *ngIf="!isLogged()" [routerLink]="'/signin'">
             <mat-icon>account_circle</mat-icon>
             <span>SignIn</span>
         </button>
-        <button class="account" color="accent" mat-icon-button id="signup" [fxShow]="isLogged()" [routerLink]="'/signup'">
+        <button class="account" color="accent" mat-icon-button id="signup" *ngIf="!isLogged()" [routerLink]="'/signup'">
             <mat-icon>account_circle</mat-icon>
             <span>SingUp</span>
         </button>
-        <button class="account" color="accent" mat-icon-button id="logout" [fxShow]="!isLogged()" (click)="logout()" [routerLink]="'/'">
+        <button class="account" color="accent" mat-icon-button id="logout" *ngIf="isLogged()" (click)="logout()"
+            [routerLink]="'/'">
             <mat-icon>account_circle</mat-icon>
             <span>Logout</span>
         </button>
@@ -30,9 +31,12 @@
     <mat-toolbar-row fxShow="false" fxShow.lt-sm="true" fxHide.lt-md="true">
         <span class="spacer"></span>
         <button class="smallSizeButtons" color="accent" mat-icon-button [routerLink]="'/cart'">
-                <mat-icon>shopping_cart</mat-icon>
-                <span>Shopping cart</span>
+
+            <mat-icon>shopping_cart</mat-icon>
+            <span>Shopping cart </span>
+
         </button>
+
         <span class="spacer"></span>
     </mat-toolbar-row>
     <mat-toolbar-row fxShow="false" fxShow.lt-sm="true" fxHide.lt-md="true">
@@ -43,7 +47,7 @@
         </button>
         <span class="spacer"></span>
     </mat-toolbar-row>
-    
+
     <mat-menu #menu="matMenu">
         <button mat-menu-item>
             <mat-icon>book</mat-icon>
@@ -58,5 +62,71 @@
             <span>Images for sale</span>
         </button>
     </mat-menu>
-</mat-toolbar>
+</mat-toolbar> -->
 
+
+<div >
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span [routerLink]="'/'">Security E-shop</span>
+
+            <span class="menu-spacer"></span>
+            <div fxShow="true" fxHide.lt-md>
+                <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+                <button class="cartShopping" color="accent" mat-icon-button [routerLink]="'/cart'">
+                    <mat-icon>shopping_cart </mat-icon> 
+
+                </button>
+                <button class="account" color="accent" mat-icon-button id="signin" *ngIf="!isLogged()"
+                    [routerLink]="'/signin'">
+                    <mat-icon>account_circle</mat-icon>
+                    <span>SignIn</span>
+                </button>
+                <button class="account" color="accent" mat-icon-button id="signup" *ngIf="!isLogged()"
+                    [routerLink]="'/signup'">
+                    <mat-icon>account_circle</mat-icon>
+                    <span>SingUp</span>
+                </button>
+                <button class="account" color="accent" mat-icon-button id="logout" *ngIf="isLogged()" (click)="logout()"
+                    [routerLink]="'/'">
+                    <mat-icon>account_circle</mat-icon>
+                    <span>Logout</span>
+                </button>
+
+                
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-sidenav-container fxFlexFill>
+        <mat-sidenav #sidenav>
+            <mat-nav-list>
+                <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+                <button mat-list-item class="cartShopping" color="accent"  [routerLink]="'/cart'">
+                    <mat-icon>shopping_cart </mat-icon> (10)
+
+                </button>
+                <button mat-list-item class="account" color="accent"  id="signin" *ngIf="!isLogged()"
+                    [routerLink]="'/signin'">
+                    <mat-icon>account_circle</mat-icon>
+                    <span>SignIn</span>
+                </button>
+                <button mat-list-item class="account" color="accent"  id="signup" *ngIf="!isLogged()"
+                    [routerLink]="'/signup'">
+                    <mat-icon>account_circle</mat-icon>
+                    <span>SingUp</span>
+                </button>
+                <button mat-list-item class="account" color="accent"  id="logout" *ngIf="isLogged()" (click)="logout()"
+                    [routerLink]="'/'">
+                    <mat-icon>account_circle</mat-icon>
+                    <span>Logout</span>
+                </button>
+               
+            </mat-nav-list>
+        </mat-sidenav>
+        <!-- <mat-sidenav-content fxFlexFill>Main content</mat-sidenav-content> -->
+    </mat-sidenav-container>
+</div>

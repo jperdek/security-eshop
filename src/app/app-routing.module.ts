@@ -30,18 +30,18 @@ const routes: Routes = [
   },
   {
     path: 'delivery',
-   component: DeliveryInfoComponent,
-   canActivate: [AuthGuard]
+    component: DeliveryInfoComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'paying-methods',
-   component: PayingMethodsComponent,
-   canActivate: [AuthGuard]
+    component: PayingMethodsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'completed',
-   component: OrderCompletedComponent,
-   canActivate: [AuthGuard]
+    component: OrderCompletedComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

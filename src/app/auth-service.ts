@@ -6,7 +6,7 @@ export class AuthService {
 
     private loggedInStatus = false; //JSON.parse(localStorage.getItem('loggedIn') || 'false');
 
-    setLoggedIn(value: boolean, name: string): void{
+    setLoggedIn(value: boolean, name: string): void {
         this.loggedInStatus = value;
         console.log('setting');
         console.log(this.loggedInStatus);
@@ -14,11 +14,11 @@ export class AuthService {
     }
 
     get isLoggedIn(): boolean {
-        console.log(localStorage.getItem('loggedIn') || this.loggedInStatus);
-        return this.loggedInStatus;
+
+        return localStorage.getItem('loggedIn') != null;
     }
 
-    getUserDetails(username: string, password:string): void {
+    getUserDetails(username: string, password: string): void {
 
     }
 }

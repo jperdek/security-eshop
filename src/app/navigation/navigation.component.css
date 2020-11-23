@@ -1,6 +1,10 @@
 .spacer {
     flex: 1 1 auto;
 }
+.menu-spacer {
+    flex: 1 1 auto;
+  }
+  
 
 .account {
     padding-left: 1rem;
@@ -25,6 +29,9 @@
 }
 
 .ejunkShopLogo {
-    height: 100px;
-    margin-top: 2rem;
+    height: 4rem;
+    margin-top: 4rem;
+}
+.mat-button.mat-accent, .mat-icon-button.mat-accent, .mat-stroked-button.mat-accent {
+    color: white !important;
 }

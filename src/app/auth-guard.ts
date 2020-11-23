@@ -5,20 +5,20 @@ import { Router } from '@angular/router';
 import { AuthService } from './auth-service';
 
 @Injectable()
-export class AuthGuard implements CanActivate{
+export class AuthGuard implements CanActivate {
 
-    constructor(private auth: AuthService, private router: Router) {}
+    constructor(private auth: AuthService, private router: Router) { }
 
-    canActivate ( next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-        console.log(this.auth.isLoggedIn);
-        console.log('heeeeee');
-        if(!this.auth.isLoggedIn ) {
+    canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+
+        if (!this.auth.isLoggedIn) {
             this.router.navigate(['/signin'])
+            return false;
         }
         return this.auth.isLoggedIn;
     }
 
-    setLoggedIn(value: boolean, name:string){
+    setLoggedIn(value: boolean, name: string) {
         this.auth.setLoggedIn(value, name);
     }
 }

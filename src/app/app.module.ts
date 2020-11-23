@@ -1,3 +1,5 @@
+// import { ShoppingCartService } from './shopping-cart-sevice';
+import { StorageService } from './StorageService';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,7 +23,6 @@ import { ProductContentComponent } from './product-content/product-content.compo
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { PayingMethodsComponent } from './paying-methods/paying-methods.component';
 import { DeliveryInfoComponent } from './delivery-info/delivery-info.component';
-
 
 import { HttpClientModule } from '@angular/common/http';
 import { MessageComponent } from './message/message.component';
@@ -48,7 +49,8 @@ import { AuthService } from './auth-service';
     MessageComponent,
     UserCreatedComponent,
     OrderCompletedComponent,
-    WorkspaceComponent
+    WorkspaceComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -58,13 +60,13 @@ import { AuthService } from './auth-service';
     MatMenuModule,
     MatToolbarModule,
     FlexLayoutModule,
-    BrowserModule, 
-    ReactiveFormsModule, 
+    BrowserModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule,
+    HttpClientModule, 
   ],
-  providers: [AuthGuard, AuthService],
+  providers: [AuthGuard, AuthService,StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

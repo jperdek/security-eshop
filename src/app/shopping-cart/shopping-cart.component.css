@@ -43,6 +43,11 @@
     padding-bottom: 1rem;
 }
 
+.mat-form-field{
+    margin-right: 1%;
+    margin-left: 1%;
+    text-align: center;
+}
 .small-mat-list {
     margin-bottom: 5rem;
     padding-top: 4rem;
