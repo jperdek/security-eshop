@@ -37,7 +37,7 @@
             </mat-grid-list>
             <div class="mat-subheading-1 price-to-pay">Price to pay in &euro;</div>
             <div class="slider-center">
-                <mat-slider class="slider-price" color="primary"
+                <mat-slider class="slider-price" color="primary" (input)="onInputChange($event)"
                     thumbLabel
                     tickInterval="1000"
                     min="{{minPricePaymentMethod}}"
@@ -58,7 +58,7 @@
             </div>
             <div class="mat-subheading-1 price-to-pay">Price to pay in &euro;</div>
             <div class="slider-center">
-                <mat-slider class="slider-price" color="primary"
+                <mat-slider class="slider-price" color="primary" (input)="onInputChange($event)"
                     thumbLabel
                     tickInterval="1000"
                     min="{{minPriceBankTransfer}}"
@@ -78,7 +78,7 @@
             </div>
             <div class="mat-subheading-1 price-to-pay">Price to pay in &euro;</div>
             <div class="slider-center">
-                <mat-slider class="slider-price" color="primary"
+                <mat-slider class="slider-price" color="primary" (input)="onInputChange($event)"
                     thumbLabel
                     tickInterval="1000"
                     min="{{minPriceCashOnDelivery}}"

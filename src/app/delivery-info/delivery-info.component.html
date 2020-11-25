@@ -30,13 +30,13 @@
                         <td>
                             <mat-form-field class="example-full-width">
                                 <mat-label>First name</mat-label>
-                                <input matInput name="name" [(ngModel)]="name">
+                                <input matInput name="name" [(ngModel)]="name" required>
                             </mat-form-field>
                         </td>
                         <td>
                             <mat-form-field class="example-full-width">
                                 <mat-label>Last Name</mat-label>
-                                <input matInput name="surname" [(ngModel)]="surname">
+                                <input matInput name="surname" [(ngModel)]="surname" required>
                             </mat-form-field>
                         </td></tr>
                     </table>
@@ -44,7 +44,7 @@
                     <p>
                         <mat-form-field class="example-full-width">
                             <mat-label>Address</mat-label>
-                            <textarea matInput placeholder="Ex. 100 Main St" name="address" [(ngModel)]="address">1600 Amphitheatre Pkwy</textarea>
+                            <textarea matInput placeholder="Ex. 100 Main St" name="address" [(ngModel)]="address" required>1600 Amphitheatre Pkwy</textarea>
                         </mat-form-field>
                         <mat-form-field class="example-full-width">
                             <mat-label>Street</mat-label>
@@ -79,7 +79,7 @@
     </div>
 
     <mat-card-actions class="footer-card footer-delivery footer-delivery-center">
-        <button color="primary" mat-raised-button class="icon-button" class="main-button" [routerLink]="'/paying-methods'" 
+        <button color="primary" mat-raised-button class="icon-button" class="main-button"  
         (click)="setDelivery({'name':name, 'surname': surname, 'address': address, 'street': street, 'city': city, 'post': post, 'postalcode': postalcode, 
         'deliveryissueplace': checked, 'deliveryplace': deliveryplace})">
             <mat-icon>keyboard_arrow_right</mat-icon>
