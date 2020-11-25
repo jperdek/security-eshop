@@ -14,7 +14,7 @@
 
 .cartShopping {
     padding-right: 2rem;
-    width: 8rem;
+    width: 2rem;
 }
 
 .smallSizeButtons {
@@ -34,4 +34,7 @@
 }
 .mat-button.mat-accent, .mat-icon-button.mat-accent, .mat-stroked-button.mat-accent {
     color: white !important;
+}
+.mat-drawer{
+    width: 25%;   
 }
