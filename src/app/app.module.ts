@@ -32,6 +32,7 @@ import { WorkspaceComponent } from './workspace/workspace.component';
 
 import { AuthGuard } from './auth-guard';
 import { AuthService } from './auth-service';
+import { ManageBoardComponent } from './manage-board/manage-board.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { AuthService } from './auth-service';
     UserCreatedComponent,
     OrderCompletedComponent,
     WorkspaceComponent,
+    ManageBoardComponent,
 
   ],
   imports: [

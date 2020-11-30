@@ -1,0 +1,49 @@
+table {
+    width: 100%;
+}
+
+.user-table {
+    font-size: 15px;
+}
+
+.mat-column-id {
+    width: 75px;
+}
+
+.mat-column-username {
+    width: 8rem;
+}
+
+.mat-column-email {
+    width: 8rem;
+}
+
+.mat-column-change-username {
+    width: 8rem;
+}
+
+.mat-column-change-email {
+    width: 8rem;
+}
+
+.input-change-style {
+    width: 5rem;
+    padding-right: 2rem;
+}
+
+.center-cell {
+    display: flex;
+    justify-self: center;
+}
+
+.make-relative {
+    position: relative;
+}
+
+.move-under-input {
+    position: absolute;
+    left: 6rem;
+    bottom: 0.75rem;
+}
+
+

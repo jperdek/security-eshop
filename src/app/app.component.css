@@ -1,5 +1,16 @@
 
 .new {
-    display: block;
+    grid-area: content;
 }
 
+.cover {
+    position: relative;
+    grid-area: footer;
+}
+
+.whole-content {
+    display: grid;
+    grid-template-areas: "content" "footer";
+    grid-template-rows: auto 10rem;
+    min-height: 100vh;
+}
