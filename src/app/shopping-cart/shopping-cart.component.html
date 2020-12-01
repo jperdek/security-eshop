@@ -24,7 +24,7 @@
                         <span>Delete</span>
                     </button>
                     <input type="hidden" class="price-one-{{i}}" value="{{product.price}}"/>
-                    <label class="price-prod-{{i}} price-label">10,50 &euro;</label>
+                    <label class="price-prod-{{i}} price-label">{{countPrice(product)}} &euro;</label>
                 </mat-list-item>
                 <mat-divider></mat-divider>
             </div>
@@ -33,7 +33,7 @@
                 <mat-icon mat-list-icon>checkout</mat-icon>
                 <div mat-line >Checkout:</div>
                 
-                <label class="price-label whole-price">13,50 &euro;</label>
+                <label class="price-label whole-price">{{this.updateFinalPrice()}} &euro;</label>
             </mat-list-item>
         </mat-list>
         <mat-list fxShow="false" fxShow.lt-md="true" fxHide.lt-lg="true">
@@ -61,7 +61,7 @@
                         </button>
                     </div>
                     <input type="hidden" class="price-one-{{i}}" value="{{product.price}}"/>
-                    <label class="price-prod-{{i}} price-label">10,50 &euro;</label>
+                    <label class="price-prod-{{i}} price-label">{{countPrice(product)}} &euro;</label>
                 </mat-list-item >
                 <mat-divider></mat-divider>
             </div>
@@ -70,7 +70,7 @@
                 <mat-icon mat-list-icon>east</mat-icon>
                 <div mat-line>Checkout:</div>
                 
-                <label class="price-label whole-price">13,50 &euro;</label>
+                <label class="price-label whole-price">{{this.updateFinalPrice()}} &euro;</label>
             </mat-list-item>
         </mat-list>
     </mat-card-content>

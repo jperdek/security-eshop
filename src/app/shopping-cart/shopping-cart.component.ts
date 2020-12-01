@@ -16,6 +16,10 @@ export class ShoppingCartComponent implements OnInit {
     this.products = this.getProducts();
   }
 
+  public countPrice(product:any): number {
+    return product['quantity'] * product['price'];
+  }
+
   public deleteComponent(class_component: string, product_title:string): void {
     var productParts:any = document.getElementsByClassName(class_component);
     var i:number;
