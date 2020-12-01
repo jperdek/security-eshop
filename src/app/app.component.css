@@ -1,16 +1,16 @@
 
+
 .new {
-    grid-area: content;
+    display: block;
+    min-height: calc(100vh - 14rem);
 }
 
 .cover {
-    position: relative;
-    grid-area: footer;
+    display: block;
+    height: 12rem;
 }
 
 .whole-content {
-    display: grid;
-    grid-template-areas: "content" "footer";
-    grid-template-rows: auto 10rem;
-    min-height: 100vh;
+    height: 100%;
 }
+
