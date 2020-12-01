@@ -85,7 +85,7 @@
                     <div class="input-content">
                         <mat-form-field appearance="fill" class="input-product-title-style">
                             <mat-label>Title</mat-label>
-                            <input matInput class="input-product-style">
+                            <input matInput class="input-product-style" name="name" [(ngModel)]="name">
                         </mat-form-field>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                     <div class="input-content">
                         <mat-form-field appearance="fill" class="input-product-price-style">
                                 <mat-label>Amount</mat-label>
-                                <input matInput type="number" class="example-right-align input-product-style">
+                                <input matInput type="number" class="example-right-align input-product-style" name="quantity" [(ngModel)]="quantity">
                                 <span matPrefix>Ks&nbsp;</span>
                                 <span matSuffix>.00</span>
                         </mat-form-field>
@@ -105,7 +105,7 @@
                     <div class="input-content">
                         <mat-form-field appearance="fill" class="input-product-price-style">
                             <mat-label>Price</mat-label>
-                            <input matInput type="number" class="example-right-align">
+                            <input matInput type="number" class="example-right-align" name="price" [(ngModel)]="price">
                             <span matPrefix>&euro;&nbsp;</span>
                             <span matSuffix>.00</span>
                         </mat-form-field>
@@ -116,11 +116,11 @@
                     <div class="input-content">
                         <mat-form-field appearance="fill" class="input-product-description-style">
                             <mat-label>Textarea</mat-label>
-                            <textarea matInput></textarea>
+                            <textarea matInput name="description" [(ngModel)]="description"></textarea>
                         </mat-form-field>
                     </div>
                 </div>
-                <button color="primary" mat-raised-button class="icon-button" class="main-button">
+                <button color="primary" mat-raised-button class="icon-button" class="main-button" (click)="insert(name, description, price, 'none', quantity);">
                     <mat-icon>keyboard_arrow_right</mat-icon>
                     <span>Insert product</span>
                 </button>
