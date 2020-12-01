@@ -90,16 +90,25 @@ export class PayingMethodsComponent implements OnInit {
   saveCard(cardInfo: any): void {
   }
 
-  public cardPayment(cardInfo: any) {
+
+  public saveOrder(cardInfo:any) {
     var deliveryInfo = this.getDeliveryInformation();
 
     this.order.userName = deliveryInfo.name + deliveryInfo.surname;
     this.order.shipmentAddress = deliveryInfo.address;
     this.order.cartInfo.products = [];
     this.order.cartInfo.finalPrice = this.payment;
-    this.order.creditCardInfo.iban = cardInfo.cardnumber;
-    this.order.creditCardInfo.valid = cardInfo.carddate;
-    this.order.creditCardInfo.cvc = cardInfo.seccode
+    
+    if(cardInfo != null) {
+      this.order.creditCardInfo.iban = cardInfo.cardnumber;
+      this.order.creditCardInfo.valid = cardInfo.carddate;
+      this.order.creditCardInfo.cvc = cardInfo.seccode;
+    } else {
+      this.order.creditCardInfo.iban = 0;
+      this.order.creditCardInfo.valid = "none";
+      this.order.creditCardInfo.cvc = "none";
+    }
+
     console.log("nice")
 
 
@@ -130,6 +139,10 @@ export class PayingMethodsComponent implements OnInit {
     // this.router.navigateByUrl('/completed');
   }
 
+  public cardPayment(cardInfo: any) {
+    return this.saveOrder(cardInfo);
+  }
+
   openSnackBar() {
     this._snackBar.openFromComponent(MessageComponent, {
       duration: 10 * 1000,
@@ -140,15 +153,13 @@ export class PayingMethodsComponent implements OnInit {
     this.payment = event.value;
   }
   public bankTransferPayment(): void {
-    var deliveryInfo = this.getDeliveryInformation();
-
-
+    this.saveOrder(null);
 
     this.router.navigateByUrl('/completed');
   }
 
   public cashOnDeliveryPayment(): void {
-    var deliveryInfo = this.getDeliveryInformation();
+    this.saveOrder(null);
 
     this.router.navigateByUrl('/completed');
   }
