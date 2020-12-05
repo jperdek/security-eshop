@@ -3,13 +3,13 @@ import { HttpClient } from '@angular/common/http';
 
 export interface PeriodicElement {
   id: number;
-  username: string;
+  name: string;
   email: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {id: 1, username: 'Hydrogen', email: "e@e.com"},
-  {id: 2, username: 'Helium', email: "kkklll@kkklll.com"},
+  {id: 1, name: 'Hydrogen', email: "e@e.com"},
+  {id: 2, name: 'Helium', email: "kkklll@kkklll.com"},
 ];
 
 @Component({
@@ -19,7 +19,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class ManageBoardComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'username', 'email', 'change-username', 'change-email'];
+  displayedColumns: string[] = ['id', 'name', 'email', 'change-username', 'change-email'];
   dataSource = ELEMENT_DATA;
   name:string;
   description:string;
@@ -27,9 +27,19 @@ export class ManageBoardComponent implements OnInit {
   url:string;
   quantity:number;
 
+  phrase: string;
+  option: string;
+  elements: any;
+
   constructor(private _ourHttpClient: HttpClient) { }
 
   ngOnInit(): void {
+    this.searchAccordingEmail("ja");
+  }
+
+  test(){
+    this.searchAccordingName("a");
+    this.searchAccordingEmail("a");
   }
 
   public insert(name:string, description:string, price:number, url:string, quantity:number): void {
@@ -51,4 +61,50 @@ export class ManageBoardComponent implements OnInit {
       });
 
   }
+
+  public search(phrase:string, option:string){
+
+    if(option == "name"){
+      this.searchAccordingName(phrase);
+    } else if(option == "email"){
+      this.searchAccordingEmail(phrase);
+    } else {
+      console.log("Unknown option to search!");
+    }
+  }
+
+  public searchAccordingName(name:string): void {
+    var dictionary = {}
+    dictionary['name'] = name;
+
+    this._ourHttpClient.post("http://localhost:8080/name", dictionary, { responseType: 'text' as 'json' }).subscribe(
+      (response)=>{
+        console.log(response);
+        this.elements = JSON.parse(response);
+        return dictionary;
+      },
+      (error)=>{
+        console.error(error);
+        return dictionary;
+      });
+
+  }
+
+  public searchAccordingEmail(email:string): void {
+    var dictionary = {}
+    dictionary['email'] = email;
+
+    this._ourHttpClient.post("http://localhost:8080/email", dictionary, { responseType: 'text' as 'json' }).subscribe(
+      (response)=>{
+        console.log(response);
+        this.elements = JSON.parse(response);
+        return dictionary;
+      },
+      (error)=>{
+        console.error(error);
+        return dictionary;
+      });
+
+  }
+
 }
