@@ -28,8 +28,14 @@ export class ManageBoardComponent implements OnInit {
   quantity:number;
 
   phrase: string;
+  lastPhrase: string;
+  last: string;
   option: string;
   elements: any;
+
+  i:number;
+  newName: string;
+  newEmail: string;
 
   constructor(private _ourHttpClient: HttpClient) { }
 
@@ -73,9 +79,19 @@ export class ManageBoardComponent implements OnInit {
     }
   }
 
+  public doLastSearch(){
+    if(this.last=="email"){
+      this.searchAccordingEmail(this.lastPhrase);
+    } else {
+      this.searchAccordingName(this.lastPhrase);
+    }
+  }
+
   public searchAccordingName(name:string): void {
     var dictionary = {}
     dictionary['name'] = name;
+    this.last = "name";
+    this.lastPhrase = name;
 
     this._ourHttpClient.post("http://localhost:8080/name", dictionary, { responseType: 'text' as 'json' }).subscribe(
       (response)=>{
@@ -90,9 +106,51 @@ export class ManageBoardComponent implements OnInit {
 
   }
 
+  public changeEmail(oldEmail:string, id:number): void {
+      var dictionary = {}
+      var newEmail = document.getElementById("email-" + id.toString()).value;
+      dictionary['oldEmail'] = oldEmail;
+      dictionary['newEmail'] = newEmail;
+      
+      this._ourHttpClient.post("http://localhost:8080/changeEmail", dictionary, { responseType: 'text' as 'json' }).subscribe(
+        (response)=>{
+          console.log(response);
+          this.elements = JSON.parse(response);
+          this.doLastSearch();
+          return dictionary;
+        },
+        (error)=>{
+          console.error(error);
+          return dictionary;
+        });
+
+    }
+
+  public changeName(oldName:string, id:number): void {
+      var dictionary = {}
+      var newName = document.getElementById("name-" + id.toString()).value;
+      dictionary['oldName'] = oldName;
+      dictionary['newName'] = newName;
+
+      this._ourHttpClient.post("http://localhost:8080/changeName", dictionary, { responseType: 'text' as 'json' }).subscribe(
+        (response)=>{
+          console.log(response);
+          this.elements = JSON.parse(response);
+          this.doLastSearch();
+          return dictionary;
+        },
+        (error)=>{
+          console.error(error);
+          return dictionary;
+        });
+
+    }
+
   public searchAccordingEmail(email:string): void {
     var dictionary = {}
     dictionary['email'] = email;
+    this.last = email;
+    this.lastPhrase = email;
 
     this._ourHttpClient.post("http://localhost:8080/email", dictionary, { responseType: 'text' as 'json' }).subscribe(
       (response)=>{
