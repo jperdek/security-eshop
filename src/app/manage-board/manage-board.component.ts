@@ -96,7 +96,7 @@ export class ManageBoardComponent implements OnInit {
     this._ourHttpClient.post("http://localhost:8080/name", dictionary, { responseType: 'text' as 'json' }).subscribe(
       (response)=>{
         console.log(response);
-        this.elements = JSON.parse(response);
+        this.elements = JSON.parse(response.toString());
         return dictionary;
       },
       (error)=>{
@@ -108,14 +108,14 @@ export class ManageBoardComponent implements OnInit {
 
   public changeEmail(oldEmail:string, id:number): void {
       var dictionary = {}
-      var newEmail = document.getElementById("email-" + id.toString()).value;
+      var newEmail = (document.getElementById("email-" + id.toString())as HTMLInputElement).value;
       dictionary['oldEmail'] = oldEmail;
       dictionary['newEmail'] = newEmail;
       
       this._ourHttpClient.post("http://localhost:8080/changeEmail", dictionary, { responseType: 'text' as 'json' }).subscribe(
         (response)=>{
           console.log(response);
-          this.elements = JSON.parse(response);
+          this.elements = JSON.parse(response.toString());
           this.doLastSearch();
           return dictionary;
         },
@@ -128,14 +128,14 @@ export class ManageBoardComponent implements OnInit {
 
   public changeName(oldName:string, id:number): void {
       var dictionary = {}
-      var newName = document.getElementById("name-" + id.toString()).value;
+      var newName = (document.getElementById("name-" + id.toString()) as HTMLInputElement).value;
       dictionary['oldName'] = oldName;
       dictionary['newName'] = newName;
 
       this._ourHttpClient.post("http://localhost:8080/changeName", dictionary, { responseType: 'text' as 'json' }).subscribe(
         (response)=>{
           console.log(response);
-          this.elements = JSON.parse(response);
+          this.elements = JSON.parse(response.toString());
           this.doLastSearch();
           return dictionary;
         },
@@ -155,7 +155,7 @@ export class ManageBoardComponent implements OnInit {
     this._ourHttpClient.post("http://localhost:8080/email", dictionary, { responseType: 'text' as 'json' }).subscribe(
       (response)=>{
         console.log(response);
-        this.elements = JSON.parse(response);
+        this.elements = JSON.parse(response.toString());
         return dictionary;
       },
       (error)=>{
