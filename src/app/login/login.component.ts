@@ -32,9 +32,44 @@ export class LoginComponent implements OnInit {
 
   }
 
-  public getUser(user:any):any {
+  public getUserOld(user:any):any {
     console.log(user.name);
       return this._ourHttpClient.get("http://localhost:8080/getUser?name=" + user.name).subscribe(
+        (response)=>{
+          console.log(response);
+          const salt = bcrypt.genSaltSync(10);
+  
+          if( bcrypt.compareSync(user.password,response['password'], function(err, res) {
+            if (err){
+              console.log("Bad");
+              this._auth.getUserDetails(user.name, user.password);
+              return false;
+            }
+            if (res) {
+              console.log("Good");
+              localStorage.setItem("loggedIn",user.name);
+              this._auth.setLoggedIn(true, user.name);
+              return true;
+            }
+            console.log("nothing")
+            return false;
+          }) == true){
+            this._auth.setLoggedIn(true, user.name);
+            
+            this.router.navigateByUrl('/');
+          } else {
+            this.router.navigateByUrl('/signin');
+            this.openSnackBar();
+          };
+        },
+        (error)=>{
+          console.error(error);
+        })
+  }
+
+  public getUser(user:any):any {
+    console.log(user.name);
+      return this._ourHttpClient.get("http://localhost:8080/login?name=" + user.name).subscribe(
         (response)=>{
           console.log(response);
           const salt = bcrypt.genSaltSync(10);
