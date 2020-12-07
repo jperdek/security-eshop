@@ -13,7 +13,10 @@ import { MatFormFieldModule } from  '@angular/material/form-field';
 import { MatSelectModule } from  '@angular/material/select';
 import { MatCheckboxModule } from  '@angular/material/checkbox';
 import { MatSliderModule } from '@angular/material/slider';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table'
+import { CdkTableModule} from '@angular/cdk/table';
+import { MatPaginatorModule } from '@angular/material/paginator'
 
 const MaterialComponents = [
   MatButtonModule,
@@ -31,7 +34,10 @@ const MaterialComponents = [
   MatSelectModule,
   MatCheckboxModule,
   MatSliderModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatTableModule,
+  CdkTableModule,
+  MatPaginatorModule
 ]
 
 @NgModule({

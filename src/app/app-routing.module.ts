@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 import { AuthGuard } from './auth-guard'
+import { ManageBoardComponent } from './manage-board/manage-board.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,11 @@ const routes: Routes = [
   {
     path: 'completed',
     component: OrderCompletedComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'manage',
+    component: ManageBoardComponent,
     canActivate: [AuthGuard]
   }
 ];

@@ -19,12 +19,12 @@
                     <mat-form-field>
                         <input class="item-counter counter-{{i}}" matInput maxlength="3" value="{{product.quantity}}" disabled>
                     </mat-form-field>
-                    <button mat-icon-button class="icon-cart-button" type="button" (click)='deleteComponent("comp-"+i.toString(), product.title);'>
+                    <button mat-icon-button class="icon-cart-button" type="button" (click)='deleteComponent("comp-"+i.toString(), product.title); updateFinalPrice();'>
                         <mat-icon mat-list-icon>delete</mat-icon>
                         <span>Delete</span>
                     </button>
                     <input type="hidden" class="price-one-{{i}}" value="{{product.price}}"/>
-                    <label class="price-prod-{{i}} price-label">10,50 &euro;</label>
+                    <label class="price-prod-{{i}} price-label">{{countPrice(product)}} &euro;</label>
                 </mat-list-item>
                 <mat-divider></mat-divider>
             </div>
@@ -55,13 +55,13 @@
                         </mat-form-field>
                     </div>
                     <div mat-line>
-                        <button mat-icon-button class="icon-cart-button" type="button" (click)='deleteComponent("comp-"+i.toString(), product.title);'>
+                        <button mat-icon-button class="icon-cart-button" type="button" (click)='deleteComponent("comp-"+i.toString(), product.title);updateFinalPrice();'>
                             <mat-icon mat-list-icon>delete</mat-icon>
                             <span fxHide.lt-vs="true">Delete</span>
                         </button>
                     </div>
                     <input type="hidden" class="price-one-{{i}}" value="{{product.price}}"/>
-                    <label class="price-prod-{{i}} price-label">10,50 &euro;</label>
+                    <label class="price-prod-{{i}} price-label">{{countPrice(product)}} &euro;</label>
                 </mat-list-item >
                 <mat-divider></mat-divider>
             </div>
@@ -87,3 +87,4 @@
     </button>
  </mat-card-actions>
 </mat-card>
+{{updateFinalPrice()}}

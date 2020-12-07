@@ -65,7 +65,7 @@
 </mat-toolbar> -->
 
 
-<div>
+<div class="whole-content">
     <mat-toolbar color="primary">
         <mat-toolbar-row>
             <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
@@ -126,8 +126,8 @@
 
             </mat-nav-list>
         </mat-sidenav>
-        <mat-sidenav-content fxFlexFill>
-            <router-outlet></router-outlet>
+        <mat-sidenav-content fxFlexFill class="content-panel">
+            <router-outlet ></router-outlet>
 
         </mat-sidenav-content>
     </mat-sidenav-container>
