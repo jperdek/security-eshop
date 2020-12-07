@@ -10,6 +10,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 import { AuthGuard } from './auth-guard'
 import { ManageBoardComponent } from './manage-board/manage-board.component';
+import { ResendPasswordComponent } from './resend-password/resend-password.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'signin',
     component: LoginComponent
+  },
+  {
+    path: 'resend-password',
+    component: ResendPasswordComponent
   },
   {
     path: 'cart',
