@@ -36,6 +36,7 @@ import { AdminGuard } from './admin-guard'
 import { AuthService } from './auth-service';
 import { ManageBoardComponent } from './manage-board/manage-board.component';
 import { ResendPasswordComponent } from './resend-password/resend-password.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ResendPasswordComponent } from './resend-password/resend-password.compo
     WorkspaceComponent,
     ManageBoardComponent,
     ResendPasswordComponent,
+    AdminComponent,
 
   ],
   imports: [

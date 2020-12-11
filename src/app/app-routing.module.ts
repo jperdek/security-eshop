@@ -13,6 +13,7 @@ import { ShopAssistentGuard } from './shop-assistent-guard'
 import { AdminGuard } from './admin-guard'
 import { ManageBoardComponent } from './manage-board/manage-board.component';
 import { ResendPasswordComponent } from './resend-password/resend-password.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   {
@@ -55,6 +56,11 @@ const routes: Routes = [
     path: 'manage',
     component: ManageBoardComponent,
     canActivate: [AuthGuard, ShopAssistentGuard ]
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuard, AdminGuard]
   }
 ];
 

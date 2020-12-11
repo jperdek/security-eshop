@@ -132,10 +132,6 @@ export class PayingMethodsComponent implements OnInit {
           });
       })
 
-
-
-
-
     // this.router.navigateByUrl('/completed');
   }
 
