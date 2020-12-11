@@ -84,13 +84,16 @@ export class LoginComponent implements OnInit {
               console.log("Good");
               localStorage.setItem("loggedIn",user.name);
               this._auth.setLoggedIn(true, user.name);
+              
               return true;
             }
             console.log("nothing")
             return false;
           }) == true){
             this._auth.setLoggedIn(true, user.name);
-            
+            console.log(response['priviledges']);
+            this._auth.setRole(true, response['priviledges']);
+
             this.router.navigateByUrl('/');
           } else {
             this.router.navigateByUrl('/signin');
@@ -100,6 +103,25 @@ export class LoginComponent implements OnInit {
         (error)=>{
           console.error(error);
         })
+  }
+
+
+  public setPriviledges(name:string): void {
+    var dictionary = {}
+    dictionary['name'] = name
+
+    this._ourHttpClient.post("http://localhost:8080/priviledges", dictionary, { responseType: 'text' as 'json' }).subscribe(
+      (response)=>{
+        console.log(response);
+
+        localStorage.setItem('priviledge',response['priviledge']);
+        return dictionary;
+      },
+      (error)=>{
+        console.error(error);
+        return dictionary;
+      });
+
   }
 
   openSnackBar() {

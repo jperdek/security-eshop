@@ -31,6 +31,8 @@ import { OrderCompletedComponent } from './order-completed/order-completed.compo
 import { WorkspaceComponent } from './workspace/workspace.component';
 
 import { AuthGuard } from './auth-guard';
+import { ShopAssistentGuard } from './shop-assistent-guard'
+import { AdminGuard } from './admin-guard'
 import { AuthService } from './auth-service';
 import { ManageBoardComponent } from './manage-board/manage-board.component';
 import { ResendPasswordComponent } from './resend-password/resend-password.component';
@@ -70,7 +72,7 @@ import { ResendPasswordComponent } from './resend-password/resend-password.compo
     FormsModule,
     HttpClientModule, 
   ],
-  providers: [AuthGuard, AuthService,StorageService],
+  providers: [AuthGuard, AuthService,StorageService, AdminGuard, ShopAssistentGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
