@@ -108,7 +108,7 @@ export class CardComponent implements OnInit {
     dictionary['name'] = name;
     dictionary['description'] = description;
     dictionary['price'] = price;
-    dictionary['URL'] = url;
+    dictionary['url'] = url;
     dictionary['quantity'] = quantity;
 
     if(this.titles.length < 6){
@@ -132,7 +132,7 @@ export class CardComponent implements OnInit {
       dictionary['name'] = name;
       dictionary['description'] = description;
       dictionary['price'] = price;
-      dictionary['URL'] = url;
+      dictionary['url'] = url;
       dictionary['quantity'] = quantity;
       this.titles.push(dictionary);
   }

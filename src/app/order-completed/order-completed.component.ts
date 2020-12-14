@@ -9,7 +9,18 @@ export class OrderCompletedComponent implements OnInit {
 
   constructor() { }
 
+  products:any;
+
   ngOnInit(): void {
+    this.products = this.getBoughtProducts();
   }
 
+  getBoughtProducts():any{
+    var string = localStorage.getItem("boughtProducts");
+    var boughtProducts;
+    if(string != null){
+      return boughtProducts = JSON.parse(string);
+    }
+    return []
+  }
 }
