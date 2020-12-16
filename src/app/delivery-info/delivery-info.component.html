@@ -20,70 +20,69 @@
             </mat-optgroup>
         </mat-select>
     </mat-form-field>
+     <form [formGroup]="form" (ngSubmit)="submit()">
+        <div fxLayout="row" fxFill>
+            <div class="form-parent">
+                <div class="adress-content">
+                    <form class="address-form">
 
-    <div fxLayout="row" fxFill>
-        <div class="form-parent">
-            <div class="adress-content">
-                <form class="address-form">
+                        <table class="example-full-width" cellspacing="0"><tr>
+                            <td>
+                                <mat-form-field class="example-full-width" [formGroup]="form">
+                                    <mat-label>First name</mat-label>
+                                    <input matInput name="name" [(ngModel)]="name" formControlName="name" required>
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field class="example-full-width" [formGroup]="form">
+                                    <mat-label>Last Name</mat-label>
+                                    <input matInput name="surname" [(ngModel)]="surname" formControlName="surname" required>
+                                </mat-form-field>
+                            </td></tr>
+                        </table>
 
-                    <table class="example-full-width" cellspacing="0"><tr>
-                        <td>
-                            <mat-form-field class="example-full-width">
-                                <mat-label>First name</mat-label>
-                                <input matInput name="name" [(ngModel)]="name" required>
+                        <p>
+                            <mat-form-field class="example-full-width" [formGroup]="form">
+                                <mat-label>Address</mat-label>
+                                <textarea matInput placeholder="Ex. 100 Main St" name="address" [(ngModel)]="address" formControlName="address" required>1600 Amphitheatre Pkwy</textarea>
                             </mat-form-field>
-                        </td>
-                        <td>
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Last Name</mat-label>
-                                <input matInput name="surname" [(ngModel)]="surname" required>
+                            <mat-form-field class="example-full-width" [formGroup]="form">
+                                <mat-label>Street</mat-label>
+                                <textarea matInput name="street" [(ngModel)]="street" formControlName="street"></textarea>
                             </mat-form-field>
-                        </td></tr>
-                    </table>
+                        </p>
 
-                    <p>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Address</mat-label>
-                            <textarea matInput placeholder="Ex. 100 Main St" name="address" [(ngModel)]="address" required>1600 Amphitheatre Pkwy</textarea>
-                        </mat-form-field>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Street</mat-label>
-                            <textarea matInput name="street" [(ngModel)]="street"></textarea>
-                        </mat-form-field>
-                    </p>
-
-                    <table class="example-full-width" cellspacing="0"><tr>
-                        <td><mat-form-field class="example-full-width">
-                            <mat-label>City</mat-label>
-                            <input matInput placeholder="Ex. San Francisco" name="city" [(ngModel)]="city">
-                        </mat-form-field></td>
-                        <td><mat-form-field class="example-full-width">
-                        <mat-label>Post</mat-label>
-                        <input matInput placeholder="Ex. California" name="post" [(ngModel)]="post">
-                        </mat-form-field></td>
-                        <td><mat-form-field class="example-full-width">
-                        <mat-label>Postal Code</mat-label>
-                        <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" value="94043" name="postalcode"  [(ngModel)]="postalcode">
-                        <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
-                        </mat-form-field></td>
-                    </tr></table>
-                </form>
+                        <table class="example-full-width" cellspacing="0" [formGroup]="form"><tr>
+                            <td><mat-form-field class="example-full-width">
+                                <mat-label>City</mat-label>
+                                <input matInput placeholder="Ex. San Francisco" name="city" formControlName="city" [(ngModel)]="city">
+                            </mat-form-field></td>
+                            <td><mat-form-field class="example-full-width">
+                            <mat-label>Post</mat-label>
+                            <input matInput placeholder="Ex. California" name="post" formControlName="post" [(ngModel)]="post">
+                            </mat-form-field></td>
+                            <td><mat-form-field class="example-full-width">
+                            <mat-label>Postal Code</mat-label>
+                            <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" value="94043" name="postalcode" formControlName="postalcode" [(ngModel)]="postalcode">
+                            <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+                            </mat-form-field></td>
+                        </tr></table>
+                    </form>
+                </div>
+            </div>
+            <div fxShow="true" fxShow.lt-md="true" fxHide.lt-sm="true" class="van-image">
+                <img class="card-image" src="/assets/images/deliverycomplex.svg" fxShow="true" fxHide.lt-lg="true"/>
+                <img class="card-image-md" src="/assets/images/deliverycomplex.svg" fxShow="false" fxShow.lt-lg="true" 
+                fxHide.lt-el="true" fxHide.lt-md="true"/>
+                <img class="card-image-sm" src="/assets/images/deliverycomplex.svg" fxShow="false" fxShow.lt-md="true" fxHide.lt-lg="true"/>
             </div>
         </div>
-        <div fxShow="true" fxShow.lt-md="true" fxHide.lt-sm="true" class="van-image">
-            <img class="card-image" src="/assets/images/deliverycomplex.svg" fxShow="true" fxHide.lt-lg="true"/>
-            <img class="card-image-md" src="/assets/images/deliverycomplex.svg" fxShow="false" fxShow.lt-lg="true" 
-            fxHide.lt-el="true" fxHide.lt-md="true"/>
-            <img class="card-image-sm" src="/assets/images/deliverycomplex.svg" fxShow="false" fxShow.lt-md="true" fxHide.lt-lg="true"/>
-        </div>
-    </div>
 
-    <mat-card-actions class="footer-card footer-delivery footer-delivery-center">
-        <button color="primary" mat-raised-button class="icon-button" class="main-button"  
-        (click)="setDelivery({'name':name, 'surname': surname, 'address': address, 'street': street, 'city': city, 'post': post, 'postalcode': postalcode, 
-        'deliveryissueplace': checked, 'deliveryplace': deliveryplace})">
-            <mat-icon>keyboard_arrow_right</mat-icon>
-            <span>Payment methods</span>
-        </button>
-    </mat-card-actions>    
+        <mat-card-actions class="footer-card footer-delivery footer-delivery-center">
+            <button color="primary" type="submit" mat-raised-button class="icon-button" class="main-button" >
+                <mat-icon>keyboard_arrow_right</mat-icon>
+                <span>Payment methods</span>
+            </button>
+        </mat-card-actions>   
+    </form>
 </mat-card>

@@ -7,6 +7,7 @@ import { ResolveStart, Router } from '@angular/router'
 import { MessageComponent } from '../message/message.component';
 import * as bcrypt from 'bcryptjs';
 import { AuthService } from '../auth-service';
+import { UserLoggedInComponent } from '../info-snackbars/user-logged-in/user-logged-in.component';
 
 @Component({
   selector: 'app-login',
@@ -23,13 +24,10 @@ export class LoginComponent implements OnInit {
   password: string;
 
   ngOnInit(): void {
-
     this.form = new FormGroup({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
     });
-
-
   }
 
   public getUserOld(user:any):any {
@@ -130,6 +128,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  userLoggedInInfo() {
+    this._snackBar.openFromComponent(UserLoggedInComponent, {
+      duration: 10 * 1000,
+    });
+  }
+
   public logError(error){
     console.error("Occured error: "+error);
       return Observable.throw(error || "Internal server error - undefined error!");
@@ -137,6 +141,7 @@ export class LoginComponent implements OnInit {
 
   submit() {
     if (this.form.status != "INVALID") {
+      this.userLoggedInInfo();
       this.submitEM.emit(this.form.value);
     }
     else {

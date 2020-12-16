@@ -84,53 +84,55 @@
         </mat-tab>
         <mat-tab label="Products" fxLayout="row" fxFill>
             <mat-card-title class="mat-headline title">Insert product</mat-card-title>
-           <div class="center-insert-product-content">
-                <img src="/assets/images/table-insert.svg" class="image-insert-product" alt="" />
-                <div class="title-product">
-                    <div class="mat-title insert-product-heading1" color="primary">Title</div>
-                    <div class="input-content">
-                        <mat-form-field appearance="fill" class="input-product-title-style">
-                            <mat-label>Title</mat-label>
-                            <input matInput class="input-product-style" name="name" [(ngModel)]="name">
-                        </mat-form-field>
+            <form [formGroup]="form" (ngSubmit)="submit()">
+                <div class="center-insert-product-content">
+                    <img src="/assets/images/table-insert.svg" class="image-insert-product" alt="" />
+                    <div class="title-product">
+                        <div class="mat-title insert-product-heading1" color="primary">Title</div>
+                        <div class="input-content">
+                            <mat-form-field appearance="fill" class="input-product-title-style">
+                                <mat-label>Title</mat-label>
+                                <input matInput class="input-product-style" name="name" formControlName="name" [(ngModel)]="name">
+                            </mat-form-field>
+                        </div>
                     </div>
-                </div>
-                <div class="amount-product">
-                    <div class="mat-subheading-2 insert-product-heading2">Amount</div>
-                    <div class="input-content">
-                        <mat-form-field appearance="fill" class="input-product-price-style">
-                                <mat-label>Amount</mat-label>
-                                <input matInput type="number" class="example-right-align input-product-style" name="quantity" [(ngModel)]="quantity">
-                                <span matPrefix>Ks&nbsp;</span>
+                    <div class="amount-product">
+                        <div class="mat-subheading-2 insert-product-heading2">Amount</div>
+                        <div class="input-content">
+                            <mat-form-field appearance="fill" class="input-product-price-style">
+                                    <mat-label>Amount</mat-label>
+                                    <input matInput type="number" class="example-right-align input-product-style" name="quantity" formControlName="quantity" [(ngModel)]="quantity">
+                                    <span matPrefix>Ks&nbsp;</span>
+                                    <span matSuffix>.00</span>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="price-product">
+                        <div class="mat-subheading-2 insert-product-heading2">Price</div>
+                        <div class="input-content">
+                            <mat-form-field appearance="fill" class="input-product-price-style">
+                                <mat-label>Price</mat-label>
+                                <input matInput type="number" class="example-right-align" name="price" formControlName="price" [(ngModel)]="price">
+                                <span matPrefix>&euro;&nbsp;</span>
                                 <span matSuffix>.00</span>
-                        </mat-form-field>
+                            </mat-form-field>
+                        </div>
                     </div>
-                </div>
-                <div class="price-product">
-                    <div class="mat-subheading-2 insert-product-heading2">Price</div>
-                    <div class="input-content">
-                        <mat-form-field appearance="fill" class="input-product-price-style">
-                            <mat-label>Price</mat-label>
-                            <input matInput type="number" class="example-right-align" name="price" [(ngModel)]="price">
-                            <span matPrefix>&euro;&nbsp;</span>
-                            <span matSuffix>.00</span>
-                        </mat-form-field>
+                    <div class="description-product">
+                        <div class="mat-subheading-2 insert-product-heading2">Description</div>
+                        <div class="input-content">
+                            <mat-form-field appearance="fill" class="input-product-description-style">
+                                <mat-label>Textarea</mat-label>
+                                <textarea matInput name="description" formControlName="description" [(ngModel)]="description"></textarea>
+                            </mat-form-field>
+                        </div>
                     </div>
+                    <button color="primary" type="submit" mat-raised-button class="icon-button" class="main-button" >
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                        <span>Insert product</span>
+                    </button>
                 </div>
-                <div class="description-product">
-                    <div class="mat-subheading-2 insert-product-heading2">Description</div>
-                    <div class="input-content">
-                        <mat-form-field appearance="fill" class="input-product-description-style">
-                            <mat-label>Textarea</mat-label>
-                            <textarea matInput name="description" [(ngModel)]="description"></textarea>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <button color="primary" mat-raised-button class="icon-button" class="main-button" (click)="insert(name, description, price, 'none', quantity);">
-                    <mat-icon>keyboard_arrow_right</mat-icon>
-                    <span>Insert product</span>
-                </button>
-          </div>
+          </form>
         </mat-tab>
     </mat-tab-group>
 </mat-card>

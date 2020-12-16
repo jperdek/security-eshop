@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router'
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatSliderChange } from '@angular/material/slider';
+import { BoughtOrderPreparedComponent } from '../info-snackbars/bought-order-prepared/bought-order-prepared.component';
+import { OrderPaymentSentToEmailComponent } from '../info-snackbars/order-payment-sent-to-email/order-payment-sent-to-email.component';
 interface Order {
   userName: string;
   shipmentAddress: string;
@@ -139,8 +141,11 @@ export class PayingMethodsComponent implements OnInit {
           if(response['order']['payed']){
             localStorage.removeItem("shoppingCartProducts");
             localStorage.setItem("boughtProducts", JSON.stringify(response['order']['products']));
+            this.boughtOrderPreparedInfo();
             this.router.navigateByUrl('/completed');
           } else {
+            localStorage.removeItem("shoppingCartProducts");
+            this.orderInfoSentToEmailInfo();
             this.router.navigateByUrl('/');
           }
 
@@ -179,6 +184,18 @@ export class PayingMethodsComponent implements OnInit {
 
   public cashOnDeliveryPayment(){
     return this.saveOrder(null);
+  }
+
+  boughtOrderPreparedInfo() {
+    this._snackBar.openFromComponent(BoughtOrderPreparedComponent, {
+      duration: 10 * 1000,
+    });
+  }
+
+  orderInfoSentToEmailInfo() {
+    this._snackBar.openFromComponent(OrderPaymentSentToEmailComponent, {
+      duration: 10 * 1000,
+    });
   }
 
 }

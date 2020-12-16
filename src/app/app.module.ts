@@ -26,7 +26,7 @@ import { DeliveryInfoComponent } from './delivery-info/delivery-info.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { MessageComponent } from './message/message.component';
-import { UserCreatedComponent } from './user-created/user-created.component';
+import { UserCreatedComponent } from './info-snackbars/user-created/user-created.component';
 import { OrderCompletedComponent } from './order-completed/order-completed.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
 
@@ -37,6 +37,14 @@ import { AuthService } from './auth-service';
 import { ManageBoardComponent } from './manage-board/manage-board.component';
 import { ResendPasswordComponent } from './resend-password/resend-password.component';
 import { AdminComponent } from './admin/admin.component';
+import { ProductCreatedComponent } from './info-snackbars/product-created/product-created.component';
+import { DeliveryMethodsSetComponent } from './info-snackbars/delivery-methods-set/delivery-methods-set.component';
+import { AddedToChartComponent } from './info-snackbars/added-to-chart/added-to-chart.component';
+import { PasswordSendToEmailComponent } from './info-snackbars/password-send-to-email/password-send-to-email.component';
+import { OrderPaymentSentToEmailComponent } from './info-snackbars/order-payment-sent-to-email/order-payment-sent-to-email.component';
+import { BoughtOrderPreparedComponent } from './info-snackbars/bought-order-prepared/bought-order-prepared.component';
+import { UserLoggedInComponent } from './info-snackbars/user-logged-in/user-logged-in.component';
+import { UserLoggedOutComponent } from './info-snackbars/user-logged-out/user-logged-out.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +66,14 @@ import { AdminComponent } from './admin/admin.component';
     ManageBoardComponent,
     ResendPasswordComponent,
     AdminComponent,
-
+    ProductCreatedComponent,
+    DeliveryMethodsSetComponent,
+    AddedToChartComponent,
+    PasswordSendToEmailComponent,
+    OrderPaymentSentToEmailComponent,
+    BoughtOrderPreparedComponent,
+    UserLoggedInComponent,
+    UserLoggedOutComponent
   ],
   imports: [
     BrowserModule,

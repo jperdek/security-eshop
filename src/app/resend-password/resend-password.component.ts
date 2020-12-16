@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import * as bcrypt from 'bcryptjs';
 import * as CryptoJS from 'crypto-js';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { PasswordSendToEmailComponent } from '../info-snackbars/password-send-to-email/password-send-to-email.component';
 
 @Component({
   selector: 'app-resend-password',
@@ -12,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class ResendPasswordComponent implements OnInit {
 
-  constructor(private _ourHttpClient:HttpClient,private router:Router) { }
+  constructor(private _ourHttpClient:HttpClient, private _snackBar:MatSnackBar, private router:Router) { }
   
   form: FormGroup;
   email: string;
@@ -24,7 +26,6 @@ export class ResendPasswordComponent implements OnInit {
   }
 
   submit(): void {
-    
   }
 
   public searchAccordingName(email:string, purePassword: string, hashedPassword: string): void {
@@ -36,6 +37,7 @@ export class ResendPasswordComponent implements OnInit {
     this._ourHttpClient.post("http://localhost:8080/changePasswd", dictionary, { responseType: 'text' as 'json' }).subscribe(
       (response)=>{
         console.log(response);
+        this.emailWithPasswordHasBeenSentInfo();
         this.router.navigateByUrl('/signin');
         return;
       },
@@ -55,4 +57,9 @@ export class ResendPasswordComponent implements OnInit {
     this.searchAccordingName(form['email'], purePassword, hashedPassword)
   }
 
+  emailWithPasswordHasBeenSentInfo() {
+    this._snackBar.openFromComponent(PasswordSendToEmailComponent, {
+      duration: 10 * 1000,
+    });
+  }
 }
