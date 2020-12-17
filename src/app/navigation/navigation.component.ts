@@ -24,7 +24,7 @@ export class NavigationComponent implements OnInit {
 
   public isShopAssistant(): boolean {
     var role = localStorage.getItem("role");
-    return role !== null && (role == "assisatnt" || role == "admin" );
+    return role !== null && (role == "assistant" || role == "admin" );
   }
 
   public isAdmin(): boolean {
