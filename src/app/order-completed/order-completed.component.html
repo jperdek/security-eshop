@@ -6,36 +6,18 @@
      <div class="completed-info">
         <img class="card-image" src="/assets/images/shopping-bag-done.svg"/>
      </div >
-     <mat-list role="list" class="download-list">
+     <mat-list role="list" class="download-list" *ngFor="let product of products; let i = index">
+        <mat-divider ></mat-divider>
             <mat-list-item role="listitem">
-                <div mat-line>Product 1</div>
-                <a href="/assets/einstein/005.jpg" download>
+                <div mat-line>{{ product.name }}</div>
+                <a href="{{ product.url }}" download>
                     <button mat-icon-button class="icon-complete-button">
                         <mat-icon mat-list-icon>download</mat-icon>
                         <span>Download</span>
                     </button>
                 </a>
             </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item role="listitem">
-                <div mat-line>Product 1</div>
-                <a href="/assets/einstein/005.jpg" download>
-                    <button mat-icon-button class="icon-complete-button">
-                        <mat-icon mat-list-icon>download</mat-icon>
-                        <span>Download</span>
-                    </button>
-                </a>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <mat-list-item role="listitem">
-                <div mat-line>Product 1</div>
-                <a href="/assets/einstein/005.jpg" download>
-                    <button mat-icon-button class="icon-complete-button">
-                        <mat-icon mat-list-icon>download</mat-icon>
-                        <span>Download</span>
-                    </button>
-                </a>
-            </mat-list-item>
+            <mat-divider ></mat-divider>
         </mat-list>
     </mat-card-content>
     <div fxShow="true" class="button-style button-style-center">

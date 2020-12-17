@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http';
 import * as bcrypt from 'bcryptjs';
-import { UserCreatedComponent } from '../user-created/user-created.component';
+import { UserCreatedComponent } from '../info-snackbars/user-created/user-created.component';
 
 @Component({
   selector: 'app-register',
@@ -43,7 +43,6 @@ export class RegisterComponent implements OnInit {
     var newUser = {}
     newUser['name'] = user.name;
     newUser['password'] = passBCrypt1;
-    console.log(newUser);
     //users/register/name/{username}/password/{password}
     return this._ourHttpClient.post("http://localhost:8080/register", newUser ).subscribe(
       (response)=>{
@@ -69,7 +68,7 @@ export class RegisterComponent implements OnInit {
     newUser['name'] = user.name;
     newUser['email'] = user.email;
     newUser['password'] = passBCrypt1;
-    console.log(newUser);
+
     //users/register/name/{username}/password/{password}
     return this._ourHttpClient.post("http://localhost:8080/signup", newUser, { responseType: 'text' as 'json' }).subscribe(
       (response)=>{

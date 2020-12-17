@@ -7,6 +7,7 @@ import { ResolveStart, Router } from '@angular/router'
 import { MessageComponent } from '../message/message.component';
 import * as bcrypt from 'bcryptjs';
 import { AuthService } from '../auth-service';
+import { UserLoggedInComponent } from '../info-snackbars/user-logged-in/user-logged-in.component';
 
 @Component({
   selector: 'app-login',
@@ -23,13 +24,10 @@ export class LoginComponent implements OnInit {
   password: string;
 
   ngOnInit(): void {
-
     this.form = new FormGroup({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
     });
-
-
   }
 
   public getUserOld(user:any):any {
@@ -84,13 +82,16 @@ export class LoginComponent implements OnInit {
               console.log("Good");
               localStorage.setItem("loggedIn",user.name);
               this._auth.setLoggedIn(true, user.name);
+              
               return true;
             }
             console.log("nothing")
             return false;
           }) == true){
             this._auth.setLoggedIn(true, user.name);
-            
+            console.log(response['priviledges']);
+            this._auth.setRole(true, response['priviledges']);
+
             this.router.navigateByUrl('/');
           } else {
             this.router.navigateByUrl('/signin');
@@ -102,8 +103,33 @@ export class LoginComponent implements OnInit {
         })
   }
 
+
+  public setPriviledges(name:string): void {
+    var dictionary = {}
+    dictionary['name'] = name
+
+    this._ourHttpClient.post("http://localhost:8080/priviledges", dictionary, { responseType: 'text' as 'json' }).subscribe(
+      (response)=>{
+        console.log(response);
+
+        localStorage.setItem('priviledge',response['priviledge']);
+        return dictionary;
+      },
+      (error)=>{
+        console.error(error);
+        return dictionary;
+      });
+
+  }
+
   openSnackBar() {
     this._snackBar.openFromComponent(MessageComponent, {
+      duration: 10 * 1000,
+    });
+  }
+
+  userLoggedInInfo() {
+    this._snackBar.openFromComponent(UserLoggedInComponent, {
       duration: 10 * 1000,
     });
   }
@@ -115,6 +141,7 @@ export class LoginComponent implements OnInit {
 
   submit() {
     if (this.form.status != "INVALID") {
+      this.userLoggedInInfo();
       this.submitEM.emit(this.form.value);
     }
     else {

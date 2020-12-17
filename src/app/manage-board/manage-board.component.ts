@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ProductCreatedComponent } from '../info-snackbars/product-created/product-created.component';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 export interface PeriodicElement {
   id: number;
@@ -19,6 +22,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class ManageBoardComponent implements OnInit {
 
+  form: FormGroup;
   displayedColumns: string[] = ['id', 'name', 'email', 'change-username', 'change-email'];
   dataSource = ELEMENT_DATA;
   name:string;
@@ -37,15 +41,28 @@ export class ManageBoardComponent implements OnInit {
   newName: string;
   newEmail: string;
 
-  constructor(private _ourHttpClient: HttpClient) { }
+  constructor(private _ourHttpClient: HttpClient, private _snackBar: MatSnackBar,) { }
 
   ngOnInit(): void {
     this.searchAccordingEmail("ja");
+
+    this.form = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      quantity: new FormControl('', [Validators.required]),
+      price: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+    });
   }
 
   test(){
     this.searchAccordingName("a");
     this.searchAccordingEmail("a");
+  }
+
+  productCreatedInfo() {
+    this._snackBar.openFromComponent(ProductCreatedComponent, {
+      duration: 10 * 1000,
+    });
   }
 
   public insert(name:string, description:string, price:number, url:string, quantity:number): void {
@@ -164,5 +181,18 @@ export class ManageBoardComponent implements OnInit {
       });
 
   }
+  submit() {
+    if (this.form.status != "INVALID") {
+      this.insert(this.name, this.description, this.price, 'none', this.quantity);
+      this.productCreatedInfo();
+      this.submitEM.emit(this.form.value);
+    }
+    else {
+      let snackBarRef = this._snackBar.open('Please fill up all required fields', '', {
+        duration: 1000
+      });
+    }
+  }
 
+  @Output() submitEM = new EventEmitter();
 }

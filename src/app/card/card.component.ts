@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http';
+import { AddedToChartComponent } from '../info-snackbars/added-to-chart/added-to-chart.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-card',
@@ -9,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CardComponent implements OnInit {
 
-  constructor(private _ourHttpClient:HttpClient) { }
+  constructor(private _ourHttpClient:HttpClient, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     if(false){
@@ -108,7 +110,7 @@ export class CardComponent implements OnInit {
     dictionary['name'] = name;
     dictionary['description'] = description;
     dictionary['price'] = price;
-    dictionary['URL'] = url;
+    dictionary['url'] = url;
     dictionary['quantity'] = quantity;
 
     if(this.titles.length < 6){
@@ -132,7 +134,7 @@ export class CardComponent implements OnInit {
       dictionary['name'] = name;
       dictionary['description'] = description;
       dictionary['price'] = price;
-      dictionary['URL'] = url;
+      dictionary['url'] = url;
       dictionary['quantity'] = quantity;
       this.titles.push(dictionary);
   }
@@ -171,5 +173,11 @@ export class CardComponent implements OnInit {
       (error)=>{
         console.error(error);
       });
+  }
+
+  addedToCartInfo() {
+    this._snackBar.openFromComponent(AddedToChartComponent, {
+      duration: 1000,
+    });
   }
 }

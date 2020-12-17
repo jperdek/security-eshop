@@ -22,14 +22,6 @@
     padding-bottom: 1rem;
 }
 
-.download-list {
-   display: block; 
-   margin: 4rem;
-   border-radius: 20px;
-   padding-top: 1rem;
-   padding-bottom: 2rem;
-   justify-content: center;
-}
 
 @media(min-width: 700px){
     .icon-complete-button {
