@@ -94,7 +94,16 @@
                     <mat-icon>account_circle</mat-icon>
                     <span>Logout</span>
                 </button>
-
+                <button class="account" color="accent" mat-icon-button id="logout" *ngIf="isShopAssistant()" (click)="toManageBoard()"
+                    [routerLink]="'/manage'">
+                    <mat-icon>build</mat-icon>
+                    <span>Board</span>
+                </button>
+                <button class="account" color="accent" mat-icon-button id="logout" *ngIf="isAdmin()" (click)="toAdminBoard()"
+                    [routerLink]="'/admin'">
+                    <mat-icon>admin_panel_settings</mat-icon>
+                    <span>Admin</span>
+                </button>
 
             </div>
         </mat-toolbar-row>

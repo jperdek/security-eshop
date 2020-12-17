@@ -22,9 +22,26 @@ export class NavigationComponent implements OnInit {
     return localStorage.getItem("loggedIn") !== null;
   }
 
+  public isShopAssistant(): boolean {
+    var role = localStorage.getItem("role");
+    return role !== null && (role == "assisatnt" || role == "admin" );
+  }
+
+  public isAdmin(): boolean {
+    var role = localStorage.getItem("role");
+    return role !== null && role == "admin";
+  }
+
   public logout(): void {
     this.successfulLoggedOutInfo();
     localStorage.removeItem("loggedIn");
+    localStorage.removeItem("role");
+  }
+
+  public toManageBoard(): void { 
+  }
+
+  public toAdminBoard(): void {
   }
 
   successfulLoggedOutInfo() {
