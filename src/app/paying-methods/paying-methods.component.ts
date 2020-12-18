@@ -105,22 +105,22 @@ export class PayingMethodsComponent implements OnInit {
 
     return this._ourHttpClient.post("http://localhost:8080/create/order", this.order).subscribe(
       (response) => {
-        console.log(response);
 
         if (response != null) {
-          console.log(response);
+
+          if (response["success"] === 1)
+            this.router.navigateByUrl('/completed');
+          else
+            this._snackBar.open('Not successfull', '', {
+              duration: 1000
+            });
 
         } else {
         }
       },
       (error) => {
-
-        if (error.error.text != "error")
-          this.router.navigateByUrl('/completed');
-        else
-         this._snackBar.open('Not successfull', '', {
-            duration: 1000
-          });
+        console.log(error)
+       
       })
 
 
