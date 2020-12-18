@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http';
 import * as bcrypt from 'bcryptjs';
-import { UserCreatedComponent } from '../user-created/user-created.component';
+import { UserCreatedComponent } from '../info-snackbars/user-created/user-created.component';
 
 @Component({
   selector: 'app-register',
@@ -36,14 +36,13 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  public setUser(user:any):any {
+  public setUserOld(user:any):any {
     console.log(user.name);
     const salt = bcrypt.genSaltSync(10);
     const passBCrypt1 = bcrypt.hashSync(user.password, salt);
     var newUser = {}
     newUser['name'] = user.name;
     newUser['password'] = passBCrypt1;
-    console.log(newUser);
     //users/register/name/{username}/password/{password}
     return this._ourHttpClient.post("http://localhost:8080/register", newUser ).subscribe(
       (response)=>{
@@ -59,6 +58,46 @@ export class RegisterComponent implements OnInit {
       (error)=>{
         console.error(error);
       })
+  }
+
+  public setUser(user:any):any {
+    console.log(user.name);
+
+    if (this.form.status != "INVALID") {
+      this.submitEM.emit(this.form.value);
+
+      const salt = bcrypt.genSaltSync(10);
+    const passBCrypt1 = bcrypt.hashSync(user.password, salt);
+    var newUser = {}
+    newUser['name'] = user.name;
+    newUser['email'] = user.email;
+    newUser['password'] = passBCrypt1;
+
+    //users/register/name/{username}/password/{password}
+    return this._ourHttpClient.post("http://localhost:8080/signup", newUser, { responseType: 'text' as 'json' }).subscribe(
+      (response)=>{
+        console.log(response);
+
+        if( response!= null){
+          this.router.navigateByUrl('/signin');
+          this.userCreatedInfo();
+        } else {
+          this.router.navigateByUrl('/signup');
+        }
+      },
+      (error)=>{
+        console.error(error);
+      })
+
+    }
+    else {
+      let snackBarRef = this._snackBar.open('Please fill up all required fields', '', {
+        duration: 1000
+      });
+
+    }
+
+
   }
 
   userCreatedInfo() {

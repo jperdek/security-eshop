@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
@@ -16,16 +17,32 @@ export class ShoppingCartComponent implements OnInit {
     this.products = this.getProducts();
   }
 
+  public countPrice(product:any): number {
+    return product['quantity'] * product['price'];
+  }
+
   public deleteComponent(class_component: string, product_title:string): void {
     var productParts:any = document.getElementsByClassName(class_component);
     var i:number;
+    var k:number;
+    var idOrder:string;
+    var priceInputs:any;
     console.log("DELETE!!");
     console.log(class_component);
 
     for(i=0; i< productParts.length; i=i + 1){
       console.log(productParts[i])
+      idOrder =class_component.split('-').reverse()[0];
+      priceInputs = document.getElementsByClassName("price-prod-" + idOrder);
+      var priceOneInputs:any = document.getElementsByClassName("price-one-" + idOrder);
+      console.log("Hele: "+ idOrder);
+      for(k=0; k< priceInputs.length; k=k + 1){
+        priceInputs[k].innerHTML = "0.0 &euro;";
+        priceOneInputs[k].value = 0;
+      }
       productParts[i].style.display= "none";
-      this.updateLocalPrice(class_component.split('-').reverse()[0], true);
+      
+      this.updateLocalPrice(idOrder, true);
     }
 
     this.deleteFromCart(product_title);
@@ -87,6 +104,8 @@ export class ShoppingCartComponent implements OnInit {
       }
 
       wholePrice = wholePrice / 2.0;
+      console.log("WHOLE: ");
+      console.log(wholePrice);
       for(i=0; i< finalPriceArray.length; i=i + 1){
         finalPriceArray[i].innerHTML = wholePrice.toString() + " &euro;";
       }

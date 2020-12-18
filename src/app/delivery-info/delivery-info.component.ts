@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DeliveryMethodsSetComponent } from '../info-snackbars/delivery-methods-set/delivery-methods-set.component';
 
 interface DeliveryCity {
   value: string;
@@ -25,13 +27,18 @@ export class DeliveryInfoComponent implements OnInit {
 
   form: FormGroup
 
-  constructor(private _ourHttpClient: HttpClient, private router: Router) { }
+  constructor(private _ourHttpClient: HttpClient, private _snackBar: MatSnackBar, private router: Router) { }
 
   ngOnInit(): void {
 
     this.form = new FormGroup({
       surname: new FormControl('', [Validators.required]),
-
+      name: new FormControl('', [Validators.required]),
+      city: new FormControl('', [Validators.required]),
+      post: new FormControl('', [Validators.required]),
+      address: new FormControl('', [Validators.required]),
+      street: new FormControl('', [Validators.required]),
+      postalcode: new FormControl('', [Validators.required]),
     });
 
   }
@@ -80,9 +87,6 @@ export class DeliveryInfoComponent implements OnInit {
 
   public setDelivery(deliveryInfo: any): void {
 
-
-
-
     var deliveryData = {}
 
     deliveryData['name'] = deliveryInfo['name'];
@@ -102,4 +106,27 @@ export class DeliveryInfoComponent implements OnInit {
       this.router.navigateByUrl('/paying-methods');
 
   }
+
+  submit() {
+    if (this.form.status != "INVALID") {
+      this.setDelivery({'name':name, 'surname': this.surname, 'address': this.address, 'street': this.street, 
+        'city': this.city, 'post': this.post, 'postalcode': this.postalcode, 
+        'deliveryissueplace': this.checked, 'deliveryplace': this.deliveryplace}); 
+      this.deliveryMethodsSuccessfulySetInfo();
+      this.submitEM.emit(this.form.value);
+    }
+    else {
+      let snackBarRef = this._snackBar.open('Please fill up all required fields', '', {
+        duration: 1000
+      });
+    }
+  }
+  
+  deliveryMethodsSuccessfulySetInfo() {
+    this._snackBar.openFromComponent(DeliveryMethodsSetComponent, {
+      duration: 10 * 1000,
+    });
+  }
+
+  @Output() submitEM = new EventEmitter();
 }

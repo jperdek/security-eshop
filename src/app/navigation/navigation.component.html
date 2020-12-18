@@ -65,7 +65,7 @@
 </mat-toolbar> -->
 
 
-<div>
+<div class="whole-content">
     <mat-toolbar color="primary">
         <mat-toolbar-row>
             <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
@@ -94,7 +94,16 @@
                     <mat-icon>account_circle</mat-icon>
                     <span>Logout</span>
                 </button>
-
+                <button class="account" color="accent" mat-icon-button id="logout" *ngIf="isShopAssistant()" (click)="toManageBoard()"
+                    [routerLink]="'/manage'">
+                    <mat-icon>build</mat-icon>
+                    <span>Board</span>
+                </button>
+                <button class="account" color="accent" mat-icon-button id="logout" *ngIf="isAdmin()" (click)="toAdminBoard()"
+                    [routerLink]="'/admin'">
+                    <mat-icon>admin_panel_settings</mat-icon>
+                    <span>Admin</span>
+                </button>
 
             </div>
         </mat-toolbar-row>
@@ -126,8 +135,8 @@
 
             </mat-nav-list>
         </mat-sidenav>
-        <mat-sidenav-content fxFlexFill>
-            <router-outlet></router-outlet>
+        <mat-sidenav-content fxFlexFill class="content-panel">
+            <router-outlet ></router-outlet>
 
         </mat-sidenav-content>
     </mat-sidenav-container>

@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router'
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { MatSliderChange } from '@angular/material/slider';
+import { BoughtOrderPreparedComponent } from '../info-snackbars/bought-order-prepared/bought-order-prepared.component';
+import { OrderPaymentSentToEmailComponent } from '../info-snackbars/order-payment-sent-to-email/order-payment-sent-to-email.component';
 interface Order {
   userName: string;
   shipmentAddress: string;
@@ -28,7 +30,7 @@ export class PayingMethodsComponent implements OnInit {
   maxPricePaymentMethod: number;
   minPriceCashOnDelivery: number;
   maxPriceCashOnDelivery: number;
-  payment: number
+  payment: number;
   order: Order = { userName: "", shipmentAddress: "", cartInfo: { products: [], finalPrice: 0 }, creditCardInfo: { iban: 0, valid: "", cvc: "" } };
 
 
@@ -78,6 +80,25 @@ export class PayingMethodsComponent implements OnInit {
     return -1;
   }
 
+  renameKey ( obj, oldKey, newKey ) {
+    obj[newKey] = obj[oldKey];
+    delete obj[oldKey];
+  }
+
+  getProducts():any {
+    var cartString = localStorage.getItem("shoppingCartProducts");
+    if (cartString !== null) {
+      var dictionary = JSON.parse(cartString);
+      var array = Object.values(dictionary);
+      if( array.length == 0){
+        return []
+      }
+      array.forEach( obj => this.renameKey( obj, 'title', 'name' ) );
+      return array;
+    }
+    return [];
+  }
+
   getDeliveryInformation(): any {
     var deliveryInfo = localStorage.getItem("deliveryInfo");
     if (deliveryInfo === null) {
@@ -90,30 +111,43 @@ export class PayingMethodsComponent implements OnInit {
   saveCard(cardInfo: any): void {
   }
 
-  public cardPayment(cardInfo: any) {
+
+  public saveOrder(cardInfo:any) {
     var deliveryInfo = this.getDeliveryInformation();
 
     this.order.userName = deliveryInfo.name + deliveryInfo.surname;
     this.order.shipmentAddress = deliveryInfo.address;
-    this.order.cartInfo.products = [];
+    this.order.cartInfo.products =  this.getProducts();
     this.order.cartInfo.finalPrice = this.payment;
-    this.order.creditCardInfo.iban = cardInfo.cardnumber;
-    this.order.creditCardInfo.valid = cardInfo.carddate;
-    this.order.creditCardInfo.cvc = cardInfo.seccode
-    console.log("nice")
+    
+    if(cardInfo != null) {
+      this.order.creditCardInfo.iban = cardInfo.cardnumber;
+      this.order.creditCardInfo.valid = cardInfo.carddate;
+      this.order.creditCardInfo.cvc = cardInfo.seccode;
+    } else {
+      this.order.creditCardInfo.iban = 0;
+      this.order.creditCardInfo.valid = "none";
+      this.order.creditCardInfo.cvc = "none";
+    }
+
+    console.log(this.order)
 
 
     return this._ourHttpClient.post("http://localhost:8080/create/order", this.order).subscribe(
       (response) => {
-
+        console.log(response);
+        console.log(response['order']['products'])
         if (response != null) {
-
-          if (response["success"] === 1)
+          if(response['order']['payed']){
+            localStorage.removeItem("shoppingCartProducts");
+            localStorage.setItem("boughtProducts", JSON.stringify(response['order']['products']));
+            this.boughtOrderPreparedInfo();
             this.router.navigateByUrl('/completed');
-          else
-            this._snackBar.open('Not successfull', '', {
-              duration: 1000
-            });
+          } else {
+            localStorage.removeItem("shoppingCartProducts");
+            this.orderInfoSentToEmailInfo();
+            this.router.navigateByUrl('/');
+          }
 
         } else {
         }
@@ -123,11 +157,11 @@ export class PayingMethodsComponent implements OnInit {
        
       })
 
-
-
-
-
     // this.router.navigateByUrl('/completed');
+  }
+
+  public cardPayment(cardInfo: any) {
+    return this.saveOrder(cardInfo);
   }
 
   openSnackBar() {
@@ -139,18 +173,24 @@ export class PayingMethodsComponent implements OnInit {
   onInputChange(event: MatSliderChange) {
     this.payment = event.value;
   }
-  public bankTransferPayment(): void {
-    var deliveryInfo = this.getDeliveryInformation();
-
-
-
-    this.router.navigateByUrl('/completed');
+  public bankTransferPayment(){
+    return this.saveOrder(null);
   }
 
-  public cashOnDeliveryPayment(): void {
-    var deliveryInfo = this.getDeliveryInformation();
+  public cashOnDeliveryPayment(){
+    return this.saveOrder(null);
+  }
 
-    this.router.navigateByUrl('/completed');
+  boughtOrderPreparedInfo() {
+    this._snackBar.openFromComponent(BoughtOrderPreparedComponent, {
+      duration: 10 * 1000,
+    });
+  }
+
+  orderInfoSentToEmailInfo() {
+    this._snackBar.openFromComponent(OrderPaymentSentToEmailComponent, {
+      duration: 10 * 1000,
+    });
   }
 
 }
