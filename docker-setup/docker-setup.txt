@@ -1,0 +1,56 @@
+1. Create one directory, for example called cyran 
+(for some reasons path should be without space in name of direcotries - in case of spring functionality - has nothing with docker)
+2. Copy docker-compose.yml file into it
+3. Create directories inside it called CyranServer and security-eshop
+4. Clone cyran backend spring server into CyranServer directory
+	4. Follow steps to setup this Server 
+		-java should be installed and path added to JAVA_HOME to installed jdk folder
+		-it inluced commands inside server directory like 
+			cd server
+			"./mvnw" clean install
+			"./mvnw" package && java -jar target/server-0.0.1-SNAPSHOT.jar //this creates jar file and secon starts server - shut it down (if remote database is set up no error should be there)
+5. Clone security-eshop frontend made in angular to security-eshop directory
+	-optionaly you can call npm install and after npm start to see if it works
+6. Move to directory created in first step and call command
+	docker-compose up --build
+	-for nodejs it is really slow (as for me)
+7. Then you can see if it works in your browser, where you type localhost:4200
+
+
+INSERTING DATA
+1 Finding id of docker container with postgres database 
+	docker ps
+2 Preparing data to insert
+	extracting lsop archive to sql dump (you need download lzop: https://www.lzop.org/) -creates an sql file
+		lzop.exe -x cvajrvwa.2021-02-27T14_29_08+00_00.sql.lzo
+	rename it as backup.sql
+3.Copy created file to docker container
+	docker cp ./backup.sql 6b647:/backup.sql 
+	docker exec -it 6b647 psql -d postgres -U postgres -f ./backup.sql  
+
+	or switch to use SQL commands:
+		docker exec -it 6b647 psql -d postgres -U postgres
+		verify if data were inserted:
+			SELECT * FROM priviledges;
+
+
+NOTES:
+if you can acces local db alternatively
+	DB_HOST:localhost can be set in application properties file
+
+Is possibility that some ports should be remapped:
+	-please do it in Dockerfiles in each folder
+	-and in docker-compose.yml file primarily
+	(i have local postgres shut down)
+Standalone frontend is docker-compose.yml file which can be used if you have remote postgres connection
+	-one is configured in application.properties file there, which can be swapped with original in spring server project
+
+Docker for decktop takes lot of GB RAM, then it can set config file for it (otherwise your computer can lag)
+	Here is description (from Microsoft's page), (i ommited line starting with kernel=):
+		You can configure global WSL options by placing a .wslconfig file into the root directory of your users folder: 
+		C:\Users\<yourUserName>\.wslconfig. Many of these files are related to WSL 2, please keep in mind you may 
+		need to run wsl --shutdown to shut down the WSL 2 VM and then restart your WSL instance for these changes to take affect.
+[wsl2]
+kernel=C:\\temp\\myCustomKernel
+memory=4GB # Limits VM memory in WSL 2 to 4 GB
+processors=2 # Makes the WSL 2 VM use two virtual processors			

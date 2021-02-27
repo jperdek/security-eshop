@@ -1,0 +1,21 @@
+version: '3'
+services:
+  spring-cyran:
+    build:
+      context: ./CyranServer
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+      - "5432:5432"
+      - "5433:5433"
+    container_name: cyran-server
+  security-eshop:
+    build:
+      context: ./security-eshop
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    container_name: security-eshop
+    volumes:
+       - ./security-eshop:/usr/src/app/security-eshop
+       - /usr/src/app/security-eshop/node_modules
