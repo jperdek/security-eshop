@@ -1,0 +1,38 @@
+version: '3'
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: perdekj
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      DB_HOST: host.docker.internal
+    ports:
+      - "5432:5432"
+  spring-cyran:
+    image: jperdek/cyran-spring
+    links:
+      - db
+    build:
+      context: ./CyranServer
+      dockerfile: Dockerfile
+    environment:
+      DB_PASS: perdekj
+      DB_USER: postgres
+      DB_HOST: host.docker.internal
+    ports:
+      - "8080:8080"
+    container_name: cyran-server
+    depends_on:
+      - db
+  security-eshop:
+    image: jperdek/cyran-security-eshop
+    build:
+      context: ./security-eshop
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    container_name: security-eshop
+    depends_on:
+      - spring-cyran
+      
